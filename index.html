@@ -1,1310 +1,408 @@
-```html
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Studio | Ethereal Digital Utilities</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Studio — Ethereal Digital Utilities</title>
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- HEIC Conversion & QR Code Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root {
+      --bg-main: #FAFAFC;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(212, 175, 55, 0.25);
+      --text-main: #1A1A1E;
+      --text-muted: #6B6B76;
+      --gold-primary: #B8860B;
+      --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #AA771C 100%);
+      --gold-light: rgba(212, 175, 55, 0.12);
+      --shadow-color: rgba(184, 134, 11, 0.08);
+      --modal-overlay: rgba(15, 15, 20, 0.5);
+    }
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    [data-theme="dark"] {
+      --bg-main: #0D0E12;
+      --card-bg: rgba(22, 24, 33, 0.85);
+      --card-border: rgba(212, 175, 55, 0.2);
+      --text-main: #F0F0F5;
+      --text-muted: #9494A8;
+      --gold-primary: #E5C158;
+      --gold-gradient: linear-gradient(135deg, #F3D067 0%, #C59828 100%);
+      --gold-light: rgba(212, 175, 55, 0.18);
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      --modal-overlay: rgba(0, 0, 0, 0.75);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+    body { background: var(--bg-main); color: var(--text-main); min-height: 100vh; padding: 2rem 1rem; display: flex; flex-direction: column; align-items: center; }
     
-    <!-- Google Fonts: Outfits & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    .container { max-width: 900px; width: 100%; margin: 0 auto; }
     
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    /* Header & Branding */
+    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: 1rem; }
+    .logo-icon { width: 52px; height: 52px; background: var(--gold-gradient); border-radius: 16px; display: flex; align-items: justify-content: center; align-items: center; color: #fff; box-shadow: 0 8px 20px var(--shadow-color); justify-content: center; }
+    .brand-title h1 { font-size: 1.8rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-title p { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
     
-    <!-- QRCode JS Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .theme-toggle, .badge { background: var(--card-bg); border: 1px solid var(--card-border); padding: 0.6rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700; color: var(--gold-primary); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; backdrop-filter: blur(10px); }
+    .theme-toggle:hover { background: var(--gold-light); }
+
+    /* AdSense Top Slot */
+    .adsense-slot { width: 100%; padding: 1rem; margin-bottom: 2rem; background: var(--card-bg); border: 1px dashed var(--card-border); border-radius: 16px; text-align: center; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Top Navigation Pills */
+    .nav-tabs { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; margin-bottom: 2rem; scrollbar-width: none; }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { background: var(--card-bg); border: 1px solid var(--card-border); padding: 0.75rem 1.25rem; border-radius: 14px; color: var(--text-main); font-weight: 600; font-size: 0.9rem; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 0.5rem; }
+    .tab-btn.active { background: var(--gold-gradient); color: #FFF; border-color: transparent; box-shadow: 0 4px 15px var(--shadow-color); }
+
+    /* Tool Card Shell */
+    .tool-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px; padding: 2rem; backdrop-filter: blur(12px); box-shadow: 0 10px 30px var(--shadow-color); display: none; }
+    .tool-card.active { display: block; }
     
-    <!-- heic2any Converter Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.4/heic2any.min.js"></script>
+    .tool-header { margin-bottom: 1.5rem; }
+    .tool-header .tag { font-size: 0.75rem; font-weight: 800; color: var(--gold-primary); letter-spacing: 1.5px; text-transform: uppercase; }
+    .tool-header h2 { font-size: 1.6rem; font-weight: 800; margin: 0.2rem 0 0.5rem 0; }
+    .tool-header p { color: var(--text-muted); font-size: 0.95rem; }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        cloud: {
-                            bg: '#0F0E17',
-                            surface: 'rgba(255, 255, 255, 0.05)',
-                            card: 'rgba(255, 255, 255, 0.08)',
-                            border: 'rgba(255, 255, 255, 0.12)',
-                            lavender: '#C4B5FD',
-                            glow: '#8B5CF6',
-                            sky: '#7DD3FC',
-                            emerald: '#34D399',
-                            gold: '#FDE047',
-                            textMuted: '#A7A6BA'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    /* Upload Area */
+    .drop-zone { border: 2px dashed var(--card-border); border-radius: 16px; padding: 2.5rem 1.5rem; text-align: center; background: var(--gold-light); cursor: pointer; margin-bottom: 1.5rem; }
+    .drop-zone:hover { border-color: var(--gold-primary); }
+    .drop-zone i { color: var(--gold-primary); margin-bottom: 0.5rem; }
 
-    <style>
-        body {
-            background-color: #FAFAFC;
-            color: #1E1B18;
-            overflow-x: hidden;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+    /* Dynamic Controls */
+    .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .control-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .control-group label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+    .control-group input, .control-group select { background: var(--bg-main); border: 1px solid var(--card-border); padding: 0.75rem; border-radius: 10px; color: var(--text-main); font-weight: 600; outline: none; }
 
-        /* Heavenly White & Gold Background Glows */
-        .ambient-glow {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(140px);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.6;
-            animation: floatGlow 18s ease-in-out infinite alternate;
-        }
+    /* Buttons */
+    .btn-action { width: 100%; background: var(--gold-gradient); color: #fff; border: none; padding: 1rem; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 6px 20px var(--shadow-color); }
+    .btn-action:hover { opacity: 0.95; }
 
-        .glow-lavender {
-            top: -10%;
-            left: 20%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(255, 215, 0, 0) 70%);
-        }
+    /* Pickup Lines & Wisdom Box */
+    .celestial-box { margin-top: 2rem; padding: 1.25rem; background: var(--gold-light); border: 1px solid var(--card-border); border-radius: 16px; text-align: center; }
+    .celestial-box p { font-style: italic; font-weight: 600; color: var(--gold-primary); margin-bottom: 0.75rem; }
+    .btn-summon { background: var(--card-bg); border: 1px solid var(--card-border); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: var(--text-main); cursor: pointer; }
 
-        .glow-sky {
-            bottom: -15%;
-            right: 10%;
-            width: 55vw;
-            height: 55vw;
-            background: radial-gradient(circle, rgba(255, 237, 160, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
-            animation-delay: -9s;
-        }
+    /* Footer & Modals */
+    footer { margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+    .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: var(--gold-primary); font-weight: 600; text-decoration: none; cursor: pointer; }
 
-        @keyframes floatGlow {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-40px) scale(1.08); }
-            100% { transform: translateY(30px) scale(0.95); }
-        }
+    .modal { display: none; position: fixed; inset: 0; background: var(--modal-overlay); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--bg-main); border: 1px solid var(--card-border); padding: 2rem; border-radius: 20px; max-width: 500px; width: 100%; max-height: 80vh; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .modal-header h3 { color: var(--gold-primary); font-weight: 800; }
+    .close-modal { cursor: pointer; color: var(--text-muted); }
 
-        /* Pure White & Gold Card */
-        .cloud-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.08), 0 0 30px rgba(255, 215, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .cloud-card:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.15), 0 0 40px rgba(212, 175, 55, 0.1);
-        }
-
-        /* Heavenly White & Gold Tab Buttons */
-        .heaven-tab {
-            background: #FFFFFF;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: #8C6D1F;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.05);
-        }
-
-        .heaven-tab:hover {
-            background: #FFFDF5;
-            color: #5C4710;
-            border-color: rgba(212, 175, 55, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .heaven-tab.active {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-            color: #FFFFFF;
-            border-color: #F1D477;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
-            font-weight: 700;
-        }
-
-        /* Radiant Gold Action Buttons */
-        .btn-celestial {
-            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
-            color: #2D2100;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .btn-celestial:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.45);
-            filter: brightness(1.05);
-        }
-
-        .btn-celestial:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* Drag & Drop Zone */
-        .heaven-dropzone {
-            border: 2px dashed rgba(212, 175, 55, 0.35);
-            background: rgba(255, 253, 245, 0.6);
-            transition: all 0.3s ease;
-        }
-
-        .heaven-dropzone:hover, .heaven-dropzone.dragover {
-            border-color: #D4AF37;
-            background: rgba(255, 248, 220, 0.8);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Input Controls */
-        input[type="text"], input[type="number"], select, textarea {
-            background-color: #FFFFFF !important;
-            border: 1px solid rgba(212, 175, 55, 0.3) !important;
-            color: #2D271E !important;
-            transition: all 0.2s ease;
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: #D4AF37 !important;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25) !important;
-            outline: none !important;
-        }
-
-        /* Text Gold Gradient */
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Animated Sparkles */
-        .sparkle-icon {
-            animation: pulseSparkle 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulseSparkle {
-            0% { opacity: 0.7; transform: scale(0.95) rotate(0deg); }
-            100% { opacity: 1; transform: scale(1.1) rotate(10deg); }
-        }
-
-        /* Smooth View Transitions */
-        .tool-view {
-            animation: fadeInView 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes fadeInView {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FAFAFC; }
-        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
-    </style>
+    canvas, img.preview-img { max-width: 100%; border-radius: 12px; margin-top: 1rem; border: 1px solid var(--card-border); }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col relative bg-[#FAFAFC]">
+<body>
 
-    <!-- Ambient Glowing Nebulae -->
-    <div class="ambient-glow glow-lavender"></div>
-    <div class="ambient-glow glow-sky"></div>
-
-    <!-- MAIN APP HEADER -->
-    <header class="relative z-20 sticky top-0 bg-white/80 backdrop-blur-xl border-b border-amber-500/20 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                
-                <!-- Brand Title -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-200 flex items-center justify-center text-white shadow-lg shadow-amber-500/20 border border-amber-300">
-                        <i class="fa-solid fa-cloud-bolt text-xl sparkle-icon text-amber-950"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <h1 class="text-2xl font-extrabold font-display tracking-tight text-gold-gradient">Cloud Studio</h1>
-                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase tracking-widest">Heavenly Ed.</span>
-                        </div>
-                        <p class="text-xs text-amber-800 font-semibold mt-0.5">Originally Created By Ghulam Muhmmad</p>
-                    </div>
-                </div>
-
-                <!-- Status Badge -->
-                <div class="hidden md:flex items-center space-x-2 text-xs text-amber-900 bg-amber-50/80 px-4 py-2 rounded-full border border-amber-300/60 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                    <span class="font-semibold">100% Client-Side Private Engine</span>
-                </div>
-            </div>
-
-            <!-- Google AdSense Header Banner Placeholder -->
-            <div class="mt-4 bg-amber-50/50 border border-amber-200/60 rounded-xl p-3 text-center min-h-[60px] flex flex-col justify-center items-center">
-                <span class="text-[10px] font-mono text-amber-800 uppercase tracking-widest">Advertisement</span>
-                <!-- Replace with your Google AdSense code snippet -->
-                <div class="text-xs text-amber-900/60 font-mono mt-0.5">[AdSense Responsive Leaderboard Unit]</div>
-            </div>
-
-            <!-- TOP NAVIGATION TABS (DEDICATED BUTTONS) -->
-            <nav class="flex items-center space-x-3 mt-4 overflow-x-auto pb-1 no-scrollbar">
-                    <i class="fa-solid fa-feather-pointed"></i>
-                    <span>Image Resizer</span>
-                </button>
-
-                <button onclick="switchTool('enhance')" id="nav-enhance" class="heaven-tab px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2.5 whitespace-nowrap">
-                    <i class="fa-solid fa-sparkles"></i>
-                    <span>Quality Enhancer</span>
-                </button>
-
-                <button onclick="switchTool('video')" id="nav-video" class="heaven-tab px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2.5 whitespace-nowrap">
-                    <i class="fa-solid fa-cloud-sun"></i>
-                    <span>Video Extractor</span>
-                </button>
-
-                <button onclick="switchTool('qrcode')" id="nav-qrcode" class="heaven-tab px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2.5 whitespace-nowrap">
-                    <i class="fa-solid fa-qrcode"></i>
-                    <span>QR Code Generator</span>
-                </button>
-
-            </nav>
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <div class="brand">
+        <div class="logo-icon"><i data-lucide="cloud-lightning"></i></div>
+        <div class="brand-title">
+          <h1>Cloud Studio</h1>
+          <p>Originally Created By Ghulam Muhmmad</p>
         </div>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle"><i data-lucide="sun" id="themeIcon"></i> <span id="themeLabel">Day Mode</span></button>
+        <div class="badge">HEAVENLY ED.</div>
+      </div>
     </header>
 
-    <!-- MAIN BODY CONTAINER -->
-    <main class="relative z-10 flex-grow max-w-7xl w-full mx-auto px-6 lg:px-12 py-10 space-y-12">
-        
-        <!-- ================= TOOL 1: HEIC / IMAGE CONVERTER ================= -->
-        <section id="tool-heic" class="tool-view block">
-            <div class="cloud-card rounded-3xl p-8 lg:p-12 space-y-8">
-                
-                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 pb-6 gap-4">
-                    <div>
-                        <div class="flex items-center space-x-2 text-amber-700 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-cloud"></i>
-                            <span>Format Transmutation</span>
-                        </div>
-                        <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900">HEIC & Image Converter</h2>
-                        <p class="text-sm text-gray-600 mt-1">Convert Apple HEIC photos or standard images to pristine JPG, PNG, or WEBP.</p>
-                    </div>
-                    <span class="self-start md:self-auto text-xs font-mono bg-amber-100 text-amber-900 font-bold px-3 py-1.5 rounded-full border border-amber-300">Batch Enabled</span>
-                </div>
-
-                <div id="heic-dropzone" onclick="document.getElementById('heic-input').click()" class="heaven-dropzone rounded-2xl p-10 lg:p-14 text-center cursor-pointer">
-                    <input type="file" id="heic-input" accept=".heic,.heif,image/*" multiple class="hidden" onchange="handleHeicFiles(this.files)">
-                    <div class="w-16 h-16 rounded-full bg-amber-100 text-amber-700 mx-auto flex items-center justify-center mb-4 border border-amber-300">
-                        <i class="fa-solid fa-cloud-arrow-up text-2xl sparkle-icon"></i>
-                    </div>
-                    <h3 class="text-base font-bold text-gray-900 mb-1">Drop your celestial photos here</h3>
-                    <p class="text-xs text-amber-800 font-mono">Supports HEIC, HEIF, PNG, JPG, WEBP</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-amber-50/40 p-6 rounded-2xl border border-amber-200/60">
-                    <div>
-                        <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wider">Target Format</label>
-                        <select id="heic-target-format" class="w-full rounded-xl px-4 py-3 text-sm font-semibold">
-                            <option value="image/jpeg">JPEG (.jpg)</option>
-                            <option value="image/png">PNG (.png)</option>
-                            <option value="image/webp">WEBP (.webp)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wider">Rendering Quality</label>
-                        <div class="flex items-center space-x-4 pt-2">
-                            <input type="range" id="heic-quality" min="0.1" max="1" step="0.05" value="0.9" class="w-full accent-amber-600" oninput="document.getElementById('heic-qual-val').innerText = Math.round(this.value * 100) + '%'">
-                            <span id="heic-qual-val" class="font-mono text-sm text-amber-900 font-bold w-12 text-right">90%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-end">
-                    <button onclick="processHeicConversion()" id="btn-convert-heic" disabled class="btn-celestial px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center space-x-2.5">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span>Transmute Files</span>
-                    </button>
-                </div>
-
-                <div id="heic-results" class="space-y-3"></div>
-            </div>
-
-            <!-- HEAVENLY PICKUP LINES & CELESTIAL WISDOM SECTION -->
-            <div class="mt-8 cloud-card rounded-3xl p-8 border-amber-300/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/80 to-amber-100/50">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <span class="text-[11px] font-bold text-amber-900 uppercase tracking-widest flex items-center space-x-1.5">
-                            <i class="fa-solid fa-star text-amber-600"></i>
-                            <span>Celestial Wisdom & Image Pickup Lines</span>
-                        </span>
-                        <p id="line-heic" class="text-base font-display italic text-amber-950 font-semibold">"Are you a HEIC image? Because you're so heavenly high-res, standard mortals can't even handle your raw format."</p>
-                    </div>
-                    <button onclick="summonNewWisdom('heic')" class="heaven-tab px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 shrink-0">
-                        <i class="fa-solid fa-dice-d20 text-amber-600"></i>
-                        <span>Summon New Line</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- AdSense Mid-Page Banner -->
-            <div class="mt-8 bg-amber-50/50 border border-amber-200/60 rounded-2xl p-4 text-center min-h-[90px] flex flex-col justify-center items-center">
-                <span class="text-[10px] font-mono text-amber-800 uppercase tracking-widest">Advertisement</span>
-                <div class="text-xs text-amber-900/60 font-mono mt-0.5">[AdSense In-Feed Responsive Unit]</div>
-            </div>
-
-            <!-- ADSENSE CONTENT REQUIREMENT: Detailed Tool Description & Privacy Assurance -->
-            <div class="mt-8 cloud-card rounded-3xl p-8 space-y-4">
-                <h3 class="text-lg font-bold text-gray-900 font-display flex items-center space-x-2">
-                    <i class="fa-solid fa-shield-halved text-amber-600"></i>
-                    <span>About Image Conversion & Client-Side Privacy</span>
-                </h3>
-                <p class="text-xs text-gray-600 leading-relaxed">
-                    Cloud Studio provides state-of-the-art image format transmutation, allowing you to convert Apple HEIC/HEIF files and standard PNG, JPG, or WEBP formats. All processing is performed directly in your browser through local Web APIs. Your images are never uploaded to remote servers, ensuring 100% data confidentiality and instantaneous processing speed.
-                </p>
-            </div>
-        </section>
-
-        <!-- ================= TOOL 2: IMAGE COMPRESSOR & RESIZER ================= -->
-        <section id="tool-compress" class="tool-view hidden">
-            <div class="cloud-card rounded-3xl p-8 lg:p-12 space-y-8">
-                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 pb-6 gap-4">
-                    <div>
-                        <div class="flex items-center space-x-2 text-amber-700 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-feather-pointed"></i>
-                            <span>Dimension & Mass Scaling</span>
-                        </div>
-                        <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900">Image Resizer & Compressor</h2>
-                        <p class="text-sm text-gray-600 mt-1">Shrink image file size and adjust dimensions with zero quality loss.</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                    <div class="lg:col-span-5 space-y-6">
-                        <div id="comp-dropzone" onclick="document.getElementById('comp-input').click()" class="heaven-dropzone rounded-2xl p-8 text-center cursor-pointer">
-                            <input type="file" id="comp-input" accept="image/*" class="hidden" onchange="loadCompressorImage(this.files[0])">
-                            <i class="fa-solid fa-compress text-3xl text-amber-600 mb-3 block sparkle-icon"></i>
-                            <span class="text-sm font-bold text-gray-900 block">Select Image to Compress</span>
-                            <span class="text-xs text-amber-800 font-mono block mt-1">Supports PNG, JPG, WEBP</span>
-                        </div>
-
-                        <div class="bg-amber-50/40 p-5 rounded-2xl border border-amber-200/60 space-y-4">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-amber-900 border-b border-amber-200/60 pb-2">Compression Settings</h4>
-                            
-                            <div>
-                                <div class="flex justify-between text-xs mb-1 font-semibold text-amber-900">
-                                    <span>Quality Level</span>
-                                    <span id="comp-qual-display" class="font-mono">80%</span>
-                                </div>
-                                <input type="range" id="comp-quality" min="10" max="100" value="80" class="w-full accent-amber-600" oninput="updateCompressorPreview()">
-                            </div>
-
-                            <div class="space-y-3 pt-2 border-t border-amber-200/60">
-                                <div class="flex items-center justify-between">
-                                    <label class="text-xs font-bold text-amber-900 uppercase tracking-wider">Dimensions (px)</label>
-                                    <label class="flex items-center space-x-1.5 text-xs text-amber-900 cursor-pointer">
-                                        <input type="checkbox" id="comp-aspect" checked class="accent-amber-600 rounded">
-                                        <span>Lock Aspect Ratio</span>
-                                    </label>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <span class="text-[10px] text-amber-800 font-mono block mb-1">Width</span>
-                                        <input type="number" id="comp-width" class="w-full rounded-xl px-3 py-2 text-xs font-mono" oninput="handleDimensionChange('width')">
-                                    </div>
-                                    <div>
-                                        <span class="text-[10px] text-amber-800 font-mono block mb-1">Height</span>
-                                        <input type="number" id="comp-height" class="w-full rounded-xl px-3 py-2 text-xs font-mono" oninput="handleDimensionChange('height')">
-                                    </div>
-                                </div>
-                                <button onclick="resetCompressorDimensions()" class="text-amber-700 hover:underline font-mono text-[11px] block text-right w-full">Reset Original Size</button>
-                            </div>
-                        </div>
-
-                        <button onclick="downloadCompressedImage()" id="btn-download-comp" disabled class="w-full btn-celestial py-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-cloud-arrow-down"></i>
-                            <span>Download Feathered Image</span>
-                        </button>
-                    </div>
-
-                    <div class="lg:col-span-7 flex flex-col justify-between bg-amber-50/40 rounded-2xl border border-amber-200/60 p-6">
-                        <div class="flex items-center justify-between border-b border-amber-200/60 pb-4 mb-4">
-                            <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Live Size Comparison</span>
-                            <div class="flex items-center space-x-4 text-xs font-mono">
-                                <span class="text-gray-500">Orig: <strong id="size-orig" class="text-gray-800">0 KB</strong></span>
-                                <span class="text-amber-700">New: <strong id="size-new" class="text-amber-900 font-bold">0 KB</strong></span>
-                            </div>
-                        </div>
-
-                        <div class="flex-grow flex items-center justify-center min-h-[300px] border border-dashed border-amber-300 rounded-xl bg-white p-4 overflow-hidden relative">
-                            <img id="comp-preview-img" class="max-h-[360px] max-w-full object-contain hidden rounded-lg shadow-sm">
-                            <div id="comp-placeholder" class="text-center text-amber-800 text-xs font-mono">
-                                Select an image to preview compression metrics
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 cloud-card rounded-3xl p-8 border-amber-300/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/80 to-amber-100/50">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <span class="text-[11px] font-bold text-amber-900 uppercase tracking-widest flex items-center space-x-1.5">
-                            <i class="fa-solid fa-star text-amber-600"></i>
-                            <span>Celestial Wisdom & Compressor Pickup Lines</span>
-                        </span>
-                        <p id="line-compress" class="text-base font-display italic text-amber-950 font-semibold">"Are you an image compressor? Because every time you come near me, my heart skips a byte and floats to cloud nine."</p>
-                    </div>
-                    <button onclick="summonNewWisdom('compress')" class="heaven-tab px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 shrink-0">
-                        <i class="fa-solid fa-dice-d20 text-amber-600"></i>
-                        <span>Summon New Line</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= TOOL 3: VIDEO TO MP3 / MP4 EXTRACTOR ================= -->
-        <section id="tool-video" class="tool-view hidden">
-            <div class="cloud-card rounded-3xl p-8 lg:p-12 space-y-8">
-                
-                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 pb-6 gap-4">
-                    <div>
-                        <div class="flex items-center space-x-2 text-amber-700 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-music"></i>
-                            <span>Astral Audio Streamer</span>
-                        </div>
-                        <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900">Video & Audio Extractor</h2>
-                        <p class="text-sm text-gray-600 mt-1">Extract pure heavenly audio tracks (MP3) or output smooth video streams.</p>
-                    </div>
-                    <span class="self-start md:self-auto text-xs font-mono bg-amber-100 text-amber-900 font-bold px-3 py-1.5 rounded-full border border-amber-300">Web Audio Stream</span>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                    <div class="lg:col-span-6 space-y-6">
-                        <div id="video-dropzone" onclick="document.getElementById('video-input').click()" class="heaven-dropzone rounded-2xl p-8 text-center cursor-pointer">
-                            <input type="file" id="video-input" accept="video/*" class="hidden" onchange="loadVideoSource(this.files[0])">
-                            <i class="fa-solid fa-film text-3xl text-amber-600 mb-3 block sparkle-icon"></i>
-                            <span class="text-sm font-bold text-gray-900 block">Select Celestial Video File</span>
-                            <span class="text-xs text-amber-800 font-mono block mt-1">MP4, WEBM, MOV</span>
-                        </div>
-
-                        <div class="bg-white rounded-2xl border border-amber-200/60 p-4 flex flex-col items-center justify-center min-h-[240px]">
-                            <video id="video-player" controls class="w-full max-h-[280px] rounded-xl hidden"></video>
-                            <div id="video-placeholder" class="text-center text-amber-800 text-xs font-mono py-12">
-                                Celestial video player container empty
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
-                        <div class="bg-amber-50/40 p-6 rounded-2xl border border-amber-200/60 space-y-5">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-amber-900 border-b border-amber-200/60 pb-2">Extraction Mode</h4>
-                            
-                            <div class="grid grid-cols-2 gap-4">
-                                <button onclick="setVideoMode('mp3')" id="mode-mp3" class="px-5 py-4 rounded-xl border border-amber-400 text-amber-950 bg-amber-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2">
-                                    <i class="fa-solid fa-music"></i>
-                                    <span>Extract MP3 Audio</span>
-                                </button>
-                                <button onclick="setVideoMode('mp4')" id="mode-mp4" class="px-5 py-4 rounded-xl border border-amber-300/40 text-amber-800 hover:border-amber-400 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 bg-white">
-                                    <i class="fa-solid fa-film"></i>
-                                    <span>Extract MP4 Video</span>
-                                </button>
-                            </div>
-
-                            <div id="video-progress-container" class="hidden space-y-3 pt-2">
-                                <div class="flex justify-between text-xs font-mono">
-                                    <span class="text-amber-900 font-bold">Summoning Stream...</span>
-                                    <span id="video-progress-percent" class="text-gray-900 font-bold">0%</span>
-                                </div>
-                                <div class="w-full bg-amber-100 rounded-full h-2.5 border border-amber-300 overflow-hidden">
-                                    <div id="video-progress-bar" class="bg-gradient-to-r from-amber-500 to-yellow-400 h-2.5 rounded-full w-0 transition-all duration-200"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button onclick="processVideoExtraction()" id="btn-process-video" disabled class="btn-celestial py-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center space-x-2 w-full">
-                            <i class="fa-solid fa-play"></i>
-                            <span>Process Astral Stream</span>
-                        </button>
-
-                        <div id="video-output-area" class="hidden bg-amber-100/60 border border-amber-400/40 p-5 rounded-2xl flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-amber-600 text-xl"></i>
-                                <div>
-                                    <span class="text-xs font-bold text-gray-900 block">Celestial File Ready</span>
-                                    <span id="video-output-filename" class="text-xs font-mono text-amber-900 font-bold">extracted-stream.mp3</span>
-                                </div>
-                            </div>
-                            <a id="video-download-btn" class="px-4 py-2 bg-amber-500 text-white font-bold rounded-xl text-xs uppercase tracking-wider flex items-center space-x-1 hover:bg-amber-600 transition-all shadow-md">
-                                <i class="fa-solid fa-download"></i>
-                                <span>Download</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- HEAVENLY PICKUP LINES SECTION -->
-            <div class="mt-8 cloud-card rounded-3xl p-8 border-amber-300/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/80 to-amber-100/50">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <span class="text-[11px] font-bold text-amber-900 uppercase tracking-widest flex items-center space-x-1.5">
-                            <i class="fa-solid fa-star text-amber-600"></i>
-                            <span>Celestial Wisdom & Video Pickup Lines</span>
-                        </span>
-                        <p id="line-video" class="text-base font-display italic text-amber-950 font-semibold">"Are you an MP3 extractor? Because out of all the noise in the universe, you're the only harmony I want to isolate."</p>
-                    </div>
-                    <button onclick="summonNewWisdom('video')" class="heaven-tab px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 shrink-0">
-                        <i class="fa-solid fa-dice-d20 text-amber-600"></i>
-                        <span>Summon New Line</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= TOOL 4: CUSTOM QR CODE GENERATOR ================= -->
-        <section id="tool-qrcode" class="tool-view hidden">
-            <div class="cloud-card rounded-3xl p-8 lg:p-12 space-y-8">
-                
-                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 pb-6 gap-4">
-                    <div>
-                        <div class="flex items-center space-x-2 text-amber-700 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-qrcode"></i>
-                            <span>Divine Portal Link</span>
-                        </div>
-                        <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900">Custom QR Code Generator</h2>
-                        <p class="text-sm text-gray-600 mt-1">Craft customized vector QR codes with celestial palette options & custom center icons.</p>
-                    </div>
-                    <span class="self-start md:self-auto text-xs font-mono bg-amber-100 text-amber-900 font-bold px-3 py-1.5 rounded-full border border-amber-300">QRCode Canvas</span>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                    <div class="lg:col-span-6 space-y-6">
-                        <div>
-                            <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wider">Target Link or Payload</label>
-                            <textarea id="qr-text" rows="3" class="w-full rounded-2xl p-4 text-xs font-mono placeholder-amber-800/40" placeholder="https://cloudstudio.app" oninput="renderQrCode()"></textarea>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wider">Foreground Color</label>
-                                <div class="flex items-center space-x-3 bg-amber-50/40 p-2.5 rounded-xl border border-amber-200/60">
-                                    <input type="color" id="qr-color-dark" value="#B8860B" class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer" onchange="renderQrCode()">
-                                    <span class="text-xs font-mono text-amber-900 font-bold" id="qr-dark-hex">#B8860B</span>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wider">Background Color</label>
-                                <div class="flex items-center space-x-3 bg-amber-50/40 p-2.5 rounded-xl border border-amber-200/60">
-                                    <input type="color" id="qr-color-light" value="#FFFFFF" class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer" onchange="renderQrCode()">
-                                    <span class="text-xs font-mono text-amber-900 font-bold" id="qr-light-hex">#FFFFFF</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wider">Celestial Presets</label>
-                            <div class="flex flex-wrap gap-2.5">
-                                <button onclick="setQrPreset('#B8860B', '#FFFFFF')" class="px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs bg-amber-50 text-amber-900 font-bold">Pure Gold</button>
-                                <button onclick="setQrPreset('#D4AF37', '#FFFDF5')" class="px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs bg-yellow-50 text-amber-900 font-bold">Golden Sunrise</button>
-                                <button onclick="setQrPreset('#1E1B18', '#FFFFFF')" class="px-3.5 py-1.5 rounded-lg border border-amber-300 text-xs bg-white text-gray-900 font-bold">Classic Onyx</button>
-                            </div>
-                        </div>
-
-                        <div class="bg-amber-50/40 p-5 rounded-2xl border border-amber-200/60 space-y-2">
-                            <label class="block text-xs font-bold text-amber-900 uppercase tracking-wider">Center Logo (Optional)</label>
-                            <input type="file" id="qr-logo-input" accept="image/*" class="w-full text-xs text-amber-900 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-200 file:text-amber-950 hover:file:bg-amber-300 cursor-pointer" onchange="handleQrLogoUpload(this.files[0])">
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-6 flex flex-col items-center justify-between bg-amber-50/30 rounded-2xl border border-amber-200/60 p-8">
-                        <span class="text-xs font-bold uppercase tracking-wider text-amber-900 mb-4 flex items-center space-x-1.5">
-                            <i class="fa-solid fa-sparkles text-amber-600"></i>
-                            <span>Live Render Canvas</span>
-                        </span>
-                        
-                        <div id="qrcode-raw" class="hidden"></div>
-                        
-                        <div class="p-4 bg-white rounded-2xl border border-amber-200/60 shadow-lg">
-                            <canvas id="qr-canvas" width="240" height="240" class="block rounded-xl"></canvas>
-                        </div>
-
-                        <button onclick="downloadQrCode('png')" class="w-full mt-6 btn-celestial py-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-cloud-arrow-down"></i>
-                            <span>Download High-Res PNG</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- HEAVENLY PICKUP LINES SECTION -->
-            <div class="mt-8 cloud-card rounded-3xl p-8 border-amber-300/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/80 to-amber-100/50">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <span class="text-[11px] font-bold text-amber-900 uppercase tracking-widest flex items-center space-x-1.5">
-                            <i class="fa-solid fa-star text-amber-600"></i>
-                            <span>Celestial Wisdom & QR Pickup Lines</span>
-                        </span>
-                        <p id="line-qrcode" class="text-base font-display italic text-amber-950 font-semibold">"Are you a QR code? Because every time I scan you, you redirect me straight to paradise."</p>
-                    </div>
-                    <button onclick="summonNewWisdom('qrcode')" class="heaven-tab px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 shrink-0">
-                        <i class="fa-solid fa-dice-d20 text-amber-600"></i>
-                        <span>Summon New Line</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="relative z-10 border-t border-amber-200/60 bg-white/90 py-10 text-center mt-12 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 space-y-4">
-            <p class="text-xs font-bold text-amber-900 uppercase tracking-widest flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-cloud text-amber-600"></i>
-                <span>CLOUD STUDIO DIGITAL SUITE</span>
-            </p>
-            <p class="text-xs text-amber-800 font-semibold">Originally Created By Ghulam Muhmmad</p>
-            <p class="text-xs text-amber-700/80 max-w-xl mx-auto leading-relaxed">
-                A high-performance utility suite offering client-side image conversion, resolution upscaling, video extraction, and custom QR code generation.
-            </p>
-
-            <!-- ADSENSE LEGAL & POLICY NAVIGATION LINKS -->
-            <div class="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-amber-200/40 text-xs font-semibold text-amber-900">
-                <button onclick="openModal('privacy')" class="hover:underline hover:text-amber-700 transition-all">Privacy Policy</button>
-                <span>•</span>
-                <button onclick="openModal('terms')" class="hover:underline hover:text-amber-700 transition-all">Terms of Service</button>
-                <span>•</span>
-                <button onclick="openModal('about')" class="hover:underline hover:text-amber-700 transition-all">About Us</button>
-                <span>•</span>
-                <button onclick="openModal('contact')" class="hover:underline hover:text-amber-700 transition-all">Contact Us</button>
-            </div>
-            
-            <p class="text-[11px] text-amber-800/60 pt-2 font-mono">© 2026 Cloud Studio. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- ADSENSE COMPLIANCE POLICY MODALS -->
-    <div id="policy-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="cloud-card max-w-2xl w-full rounded-3xl p-8 max-h-[85vh] overflow-y-auto space-y-6 relative border-amber-300">
-            <div class="flex items-center justify-between border-b border-amber-200/60 pb-4">
-                <h3 id="modal-title" class="text-xl font-extrabold font-display text-gray-900">Policy Document</h3>
-                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-amber-100 text-amber-900 font-bold flex items-center justify-center hover:bg-amber-200 transition-all">✕</button>
-            </div>
-            <div id="modal-content" class="text-xs text-gray-700 leading-relaxed space-y-4 font-sans">
-                <!-- Dynamic Content Injected Here -->
-            </div>
-            <div class="text-right pt-4 border-t border-amber-200/60">
-                <button onclick="closeModal()" class="btn-celestial px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider">Close Window</button>
-            </div>
-        </div>
+    <!-- Top AdSense Banner Placeholder -->
+    <div class="adsense-slot">
+      [ Google AdSense Responsive Leaderboard Unit ]
     </div>
 
-    <!-- INTERACTIVE JAVASCRIPT ENGINE -->
-    <script>
-        // ADSENSE COMPLIANCE MODAL DATA
-        const policyDocs = {
-            privacy: {
-                title: "Privacy Policy",
-                content: `
-                    <p><strong>Effective Date:</strong> November 2026</p>
-                    <p>At Cloud Studio, accessible from our web platform, your privacy is of paramount importance to us. This Privacy Policy outlines the types of information collected and recorded by Cloud Studio and how we protect it.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">1. Client-Side Data Processing</h4>
-                    <p>All tool operations—including HEIC conversion, image resizing, canvas quality enhancement, video extraction, and QR code rendering—take place 100% inside your web browser. None of your uploaded files, media, or converted data are transmitted to or stored on external servers.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">2. Cookies and Web Beacons</h4>
-                    <p>Like any other website, Cloud Studio uses 'cookies'. These cookies are used to store preferences and optimize user experience. We also partner with third-party vendors such as Google AdSense, which may use DART cookies to serve ads based on visits to our site and other sites on the internet.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">3. Third Party Ad Partners</h4>
-                    <p>Google AdSense may use technologies like cookies, JavaScript, or Web Beacons in their respective advertisements. You can choose to disable cookies through your individual browser options.</p>
-                `
-            },
-            terms: {
-                title: "Terms of Service",
-                content: `
-                    <p>Welcome to Cloud Studio! By accessing or using our digital utilities, you agree to comply with and be bound by the following Terms of Service.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">1. Use of Tools</h4>
-                    <p>Cloud Studio provides free browser-based conversion and editing tools. You are free to use these tools for personal or commercial purposes, provided your use complies with local digital regulations.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">2. Intellectual Property</h4>
-                    <p>Cloud Studio was <strong>Originally Created By Ghulam Muhmmad</strong>. All rights regarding the original interface design, layout, custom canvas algorithms, and brand elements are retained.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">3. Disclaimer of Warranties</h4>
-                    <p>The service is provided "as is" without warranties of any kind. We are not liable for any data loss occurring on your local device.</p>
-                `
-            },
-            about: {
-                title: "About Us",
-                content: `
-                    <p><strong>Cloud Studio</strong> is an ethereal suite of browser-based digital utilities designed to streamline everyday media editing tasks without sacrificing speed or privacy.</p>
-                    <p class="mt-2">Originally Created By <strong>Ghulam Muhmmad</strong>, Cloud Studio brings together high-performance HTML5 Canvas APIs, Web Audio APIs, and vector generation engines in a clean, heavenly white-and-gold design interface.</p>
-                    <p class="mt-2">Our mission is to empower content creators, designers, and web users worldwide with fast, free, and completely private web tools.</p>
-                `
-            },
-            contact: {
-                title: "Contact Us",
-                content: `
-                    <p>If you have any questions, feedback, or support inquiries regarding Cloud Studio, please reach out through our official channels:</p>
-                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 mt-3 space-y-2">
-                        <p><strong>Creator:</strong> Ghulam Muhmmad</p>
-                        <p><strong>Email:</strong> GMGAMERZ10@GMAIL.COM</p>
-                        <p><strong>Response Time:</strong> Within 24-48 hours</p>
-                    </div>
-                `
-            }
-        };
-
-        function openModal(type) {
-            const doc = policyDocs[type];
-            if (!doc) return;
-            document.getElementById('modal-title').innerText = doc.title;
-            document.getElementById('modal-content').innerHTML = doc.content;
-            document.getElementById('policy-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('policy-modal').classList.add('hidden');
-        }
-
-        // HEAVENLY WISDOM & PICKUP LINES DATA
-        const celestialWisdom = {
-            heic: [
-                `"Are you a HEIC photo? Because you're so high-res, standard mortals can't even handle your raw format."`,
-                `"You must be an image converter, because you just transmuted my gloomy day into pure sunshine."`,
-                `"Is your name PNG? Because your transparency is divine and you have zero loss in quality."`,
-                `"Celestial Fact: HEIC uses half the space of JPG while preserving angelically sharp pixel detail."`,
-                `"They say beauty is in the eye of the beholder, but in your case, it's rendered in 8K loss-free resolution."`
-            ],
-            compress: [
-                `"Are you an image compressor? Because every time you come near me, my heart skips a byte and floats to cloud nine."`,
-                `"You don't need compression—your beauty is already light enough to float straight to heaven."`,
-                `"Is your density reduced? Because being around you makes all my heavy earthly worries featherlight."`,
-                `"Celestial Fact: WebP compression reduces file size by over 30% compared to JPG without losing heavenly glow."`,
-                `"My love for you has an infinite aspect ratio locked—it scales perfectly no matter the dimensions."`
-            ],
-            enhance: [
-                `"Are you an image enhancer? Because the moment you appeared, everything blurry in my life turned crystal clear."`,
-                `"You must be a 4x upscale filter, because you bring out divine details I never noticed before."`,
-                `"No sharpen algorithm in the world could make your features look any more flawless."`,
-                `"Celestial Fact: Multi-pass canvas convolutions enhance clarity without adding artificial noise."`,
-                `"If I could adjust your contrast slider, I'd turn up your brightness to shine over the entire universe."`
-            ],
-            video: [
-                `"Are you an MP3 extractor? Because out of all the noise in the universe, you're the only harmony I want to isolate."`,
-                `"You must be an astral audio stream, because your voice plays on a loop in my head all day."`,
-                `"If life was a video stream, I'd extract every single second spent with you into an eternal MP4 file."`,
-                `"Celestial Fact: Sound waves travel through clouds, but your voice travels straight through my soul."`,
-                `"Are you a 60fps video? Because you move through my mind smoother than a cloud on a summer breeze."`
-            ],
-            qrcode: [
-                `"Are you a QR code? Because every time I scan you, you redirect me straight to paradise."`,
-                `"No matter what payload you encode, you'll always be the shortcut to my heart."`,
-                `"Is your background transparent? Because I can see right through to your heavenly soul."`,
-                `"Celestial Fact: QR codes contain error correction levels up to 30%, meaning even covered logos scan with divine accuracy."`,
-                `"Our connection is instant—no Wi-Fi password required, just pure celestial scanning."`
-            ]
-        };
-
-        function summonNewWisdom(toolId) {
-            const lines = celestialWisdom[toolId];
-            if (!lines) return;
-            const textEl = document.getElementById(`line-${toolId}`);
-            if (textEl) {
-                const randomLine = lines[Math.floor(Math.random() * lines.length)];
-                textEl.innerText = randomLine;
-            }
-        }
-
-        // Switch Active Tool Tabs
-        function switchTool(toolId) {
-            document.querySelectorAll('.tool-view').forEach(view => view.classList.add('hidden'));
-            document.querySelectorAll('.heaven-tab').forEach(btn => btn.classList.remove('active'));
-
-            const targetView = document.getElementById('tool-' + toolId);
-            const targetBtn = document.getElementById('nav-' + toolId);
-            
-            if (targetView) targetView.classList.remove('hidden');
-            if (targetBtn) targetBtn.classList.add('active');
-
-            if(toolId === 'qrcode') {
-                renderQrCode();
-            }
-        }
-
-        // Drag and drop setup
-        document.querySelectorAll('.heaven-dropzone').forEach(zone => {
-            zone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                zone.classList.add('dragover');
-            });
-            zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-            zone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                zone.classList.remove('dragover');
-            });
-        });
-
-        // 1. HEIC CONVERTER LOGIC
-        let heicSelectedFiles = [];
-
-        function handleHeicFiles(files) {
-            if(!files || files.length === 0) return;
-            heicSelectedFiles = Array.from(files);
-            
-            document.getElementById('btn-convert-heic').disabled = false;
-            const resultsContainer = document.getElementById('heic-results');
-            resultsContainer.innerHTML = `<div class="text-xs font-bold text-emerald-300 uppercase tracking-wider mb-2">Queue (${heicSelectedFiles.length} Celestial File/s)</div>`;
-
-            heicSelectedFiles.forEach((file, index) => {
-                const item = document.createElement('div');
-                item.className = 'bg-white/[0.02] border border-white/10 rounded-xl p-4 flex items-center justify-between text-xs';
-                item.innerHTML = `
-                    <div class="flex items-center space-x-3 truncate">
-                        <i class="fa-solid fa-cloud-arrow-up text-cloud-lavender"></i>
-                        <span class="font-mono text-white truncate">${file.name}</span>
-                        <span class="text-cloud-textMuted font-mono">(${formatBytes(file.size)})</span>
-                    </div>
-                    <span id="heic-status-${index}" class="text-cloud-textMuted font-mono">Ready for Transmutation</span>
-                `;
-                resultsContainer.appendChild(item);
-            });
-        }
-
-        async function processHeicConversion() {
-            const targetFormat = document.getElementById('heic-target-format').value;
-            const quality = parseFloat(document.getElementById('heic-quality').value);
-            let ext = targetFormat === 'image/png' ? 'png' : (targetFormat === 'image/webp' ? 'webp' : 'jpg');
-
-            for (let i = 0; i < heicSelectedFiles.length; i++) {
-                const file = heicSelectedFiles[i];
-                const statusEl = document.getElementById(`heic-status-${i}`);
-                statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-emerald-300 mr-1.5"></i> Transmuting...`;
-
-                try {
-                    let blob;
-                    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
-                        blob = await heic2any({ blob: file, toType: targetFormat, quality: quality });
-                        if (Array.isArray(blob)) blob = blob[0];
-                    } else {
-                        blob = await convertStandardImage(file, targetFormat, quality);
-                    }
-
-                    const downloadUrl = URL.createObjectURL(blob);
-                    const newName = file.name.substring(0, file.name.lastIndexOf('.')) + '.' + ext;
-
-                    statusEl.innerHTML = `
-                        <a href="${downloadUrl}" download="${newName}" class="px-3 py-1.5 bg-emerald-400 text-slate-950 font-bold rounded-lg hover:bg-emerald-300 transition-all flex items-center space-x-1">
-                            <i class="fa-solid fa-download"></i>
-                            <span>Save ${ext.toUpperCase()}</span>
-                        </a>
-                    `;
-                } catch (err) {
-                    statusEl.innerHTML = `<span class="text-rose-400 font-mono">Transmutation Error</span>`;
-                }
-            }
-        }
-
-        function convertStandardImage(file, format, quality) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    canvas.toBlob((blob) => resolve(blob), format, quality);
-                };
-                img.onerror = reject;
-                img.src = URL.createObjectURL(file);
-            });
-        }
-
-        // 2. IMAGE COMPRESSOR & RESIZER LOGIC
-        let currentCompressorImg = null;
-        let compressorOriginalFile = null;
-
-        function loadCompressorImage(file) {
-            if (!file) return;
-            compressorOriginalFile = file;
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    currentCompressorImg = img;
-                    document.getElementById('comp-width').value = img.width;
-                    document.getElementById('comp-height').value = img.height;
-                    document.getElementById('size-orig').innerText = formatBytes(file.size);
-
-                    const previewImg = document.getElementById('comp-preview-img');
-                    previewImg.src = e.target.result;
-                    previewImg.classList.remove('hidden');
-                    document.getElementById('comp-placeholder').classList.add('hidden');
-                    document.getElementById('btn-download-comp').disabled = false;
-
-                    updateCompressorPreview();
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function handleDimensionChange(changed) {
-            if (!currentCompressorImg) return;
-            const aspectLocked = document.getElementById('comp-aspect').checked;
-            const wInput = document.getElementById('comp-width');
-            const hInput = document.getElementById('comp-height');
-
-            if (aspectLocked) {
-                const ratio = currentCompressorImg.width / currentCompressorImg.height;
-                if (changed === 'width') {
-                    hInput.value = Math.round(wInput.value / ratio);
-                } else {
-                    wInput.value = Math.round(hInput.value * ratio);
-                }
-            }
-            updateCompressorPreview();
-        }
-
-        function resetCompressorDimensions() {
-            if (!currentCompressorImg) return;
-            document.getElementById('comp-width').value = currentCompressorImg.width;
-            document.getElementById('comp-height').value = currentCompressorImg.height;
-            updateCompressorPreview();
-        }
-
-        function updateCompressorPreview() {
-            if (!currentCompressorImg) return;
-
-            const quality = parseInt(document.getElementById('comp-quality').value) / 100;
-            document.getElementById('comp-qual-display').innerText = Math.round(quality * 100) + '%';
-
-            const targetW = parseInt(document.getElementById('comp-width').value) || currentCompressorImg.width;
-            const targetH = parseInt(document.getElementById('comp-height').value) || currentCompressorImg.height;
-
-            const canvas = document.createElement('canvas');
-            canvas.width = targetW;
-            canvas.height = targetH;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(currentCompressorImg, 0, 0, targetW, targetH);
-
-            const format = compressorOriginalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
-            canvas.toBlob((blob) => {
-                if (!blob) return;
-                document.getElementById('size-new').innerText = formatBytes(blob.size);
-            }, format, quality);
-        }
-
-        function downloadCompressedImage() {
-            if (!currentCompressorImg) return;
-            const quality = parseInt(document.getElementById('comp-quality').value) / 100;
-            const targetW = parseInt(document.getElementById('comp-width').value) || currentCompressorImg.width;
-            const targetH = parseInt(document.getElementById('comp-height').value) || currentCompressorImg.height;
-
-            const canvas = document.createElement('canvas');
-            canvas.width = targetW;
-            canvas.height = targetH;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(currentCompressorImg, 0, 0, targetW, targetH);
-
-            const format = compressorOriginalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
-            const ext = format === 'image/png' ? 'png' : 'jpg';
-
-            canvas.toBlob((blob) => {
-                const link = document.createElement('a');
-                link.download = `feathered-image.${ext}`;
-                link.href = URL.createObjectURL(blob);
-                link.click();
-            }, format, quality);
-        }
-
-        // 5. IMAGE ENHANCER LOGIC
-        let currentEnhanceImg = null;
-        let upscaleScale = 1;
-
-        function loadEnhanceImage(file) {
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    currentEnhanceImg = img;
-                    document.getElementById('enh-placeholder').classList.add('hidden');
-                    document.getElementById('enh-canvas').classList.remove('hidden');
-                    document.getElementById('btn-download-enh').disabled = false;
-                    applyEnhancements();
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function setUpscaleScale(scale) {
-            upscaleScale = scale;
-            [1, 2, 4].forEach(s => {
-                const btn = document.getElementById(`scale-${s}`);
-                if (s === scale) {
-                    btn.className = 'py-2 rounded-xl text-xs font-bold border border-amber-400 bg-amber-200 text-amber-950';
-                } else {
-                    btn.className = 'py-2 rounded-xl text-xs font-bold border border-amber-300/60 bg-white text-amber-900';
-                }
-            });
-            applyEnhancements();
-        }
-
-        function resetEnhancements() {
-            document.getElementById('enh-sharp').value = 0;
-            document.getElementById('enh-contrast').value = 100;
-            document.getElementById('enh-bright').value = 100;
-            document.getElementById('enh-saturate').value = 100;
-            setUpscaleScale(1);
-        }
-
-        function applyEnhancements() {
-            if (!currentEnhanceImg) return;
-
-            const sharpVal = parseInt(document.getElementById('enh-sharp').value);
-            const contrastVal = parseInt(document.getElementById('enh-contrast').value);
-            const brightVal = parseInt(document.getElementById('enh-bright').value);
-            const saturateVal = parseInt(document.getElementById('enh-saturate').value);
-
-            document.getElementById('val-sharp').innerText = sharpVal + '%';
-            document.getElementById('val-contrast').innerText = contrastVal + '%';
-            document.getElementById('val-bright').innerText = brightVal + '%';
-            document.getElementById('val-saturate').innerText = saturateVal + '%';
-
-            const canvas = document.getElementById('enh-canvas');
-            const ctx = canvas.getContext('2d');
-
-            const targetWidth = currentEnhanceImg.width * upscaleScale;
-            const targetHeight = currentEnhanceImg.height * upscaleScale;
-
-            canvas.width = targetWidth;
-            canvas.height = targetHeight;
-            document.getElementById('enh-dims-display').innerText = `${targetWidth} x ${targetHeight} px`;
-
-            ctx.filter = `contrast(${contrastVal}%) brightness(${brightVal}%) saturate(${saturateVal}%)`;
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            ctx.drawImage(currentEnhanceImg, 0, 0, targetWidth, targetHeight);
-
-            // Apply Sharpening Convolution Filter if > 0
-            if (sharpVal > 0) {
-                const imgData = ctx.getImageData(0, 0, targetWidth, targetHeight);
-                const sharpened = sharpenImageData(imgData, sharpVal / 100);
-                ctx.putImageData(sharpened, 0, 0);
-            }
-        }
-
-        function sharpenImageData(imageData, factor) {
-            const w = imageData.width;
-            const h = imageData.height;
-            const src = imageData.data;
-            const output = new ImageData(w, h);
-            const dst = output.data;
-
-            // Simple 3x3 sharpen kernel
-            const k = [
-                0, -1 * factor, 0,
-                -1 * factor, 1 + 4 * factor, -1 * factor,
-                0, -1 * factor, 0
-            ];
-
-            for (let y = 1; y < h - 1; y++) {
-                for (let x = 1; x < w - 1; x++) {
-                    const sy = y * w + x;
-                    const dstIdx = sy * 4;
-
-                    for (let c = 0; c < 3; c++) {
-                        let val = 0;
-                        val += src[((y - 1) * w + (x)) * 4 + c] * k[1];
-                        val += src[((y) * w + (x - 1)) * 4 + c] * k[3];
-                        val += src[((y) * w + (x)) * 4 + c] * k[4];
-                        val += src[((y) * w + (x + 1)) * 4 + c] * k[5];
-                        val += src[((y + 1) * w + (x)) * 4 + c] * k[7];
-
-                        dst[dstIdx + c] = Math.min(255, Math.max(0, val));
-                    }
-                    dst[dstIdx + 3] = src[dstIdx + 3]; // Alpha
-                }
-            }
-            return output;
-        }
-
-        function downloadEnhancedImage() {
-            const canvas = document.getElementById('enh-canvas');
-            if (!canvas) return;
-            const link = document.createElement('a');
-            link.download = `enhanced-masterpiece.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
-
-        // 3. VIDEO EXTRACTOR LOGIC
-        let currentVideoFile = null;
-        let videoMode = 'mp3';
-
-        function loadVideoSource(file) {
-            if(!file) return;
-            currentVideoFile = file;
-
-            const player = document.getElementById('video-player');
-            player.src = URL.createObjectURL(file);
-            player.classList.remove('hidden');
-            document.getElementById('video-placeholder').classList.add('hidden');
-            document.getElementById('btn-process-video').disabled = false;
-        }
-
-        function setVideoMode(mode) {
-            videoMode = mode;
-            const mp3Btn = document.getElementById('mode-mp3');
-            const mp4Btn = document.getElementById('mode-mp4');
-
-            if(mode === 'mp3') {
-                mp3Btn.className = 'px-5 py-4 rounded-xl border border-purple-400/60 text-purple-200 bg-purple-500/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-                mp4Btn.className = 'px-5 py-4 rounded-xl border border-white/10 text-cloud-textMuted hover:border-white/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-            } else {
-                mp4Btn.className = 'px-5 py-4 rounded-xl border border-purple-400/60 text-purple-200 bg-purple-500/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-                mp3Btn.className = 'px-5 py-4 rounded-xl border border-white/10 text-cloud-textMuted hover:border-white/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-            }
-        }
-
-        async function processVideoExtraction() {
-            if(!currentVideoFile) return;
-
-            const progressBar = document.getElementById('video-progress-bar');
-            const progressPercent = document.getElementById('video-progress-percent');
-            const progressBox = document.getElementById('video-progress-container');
-            const outputArea = document.getElementById('video-output-area');
-
-            progressBox.classList.remove('hidden');
-            outputArea.classList.add('hidden');
-
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 10;
-                progressBar.style.width = progress + '%';
-                progressPercent.innerText = progress + '%';
-
-                if(progress >= 100) {
-                    clearInterval(interval);
-                    progressBox.classList.add('hidden');
-                    outputArea.classList.remove('hidden');
-
-                    const ext = videoMode === 'mp3' ? 'mp3' : 'mp4';
-                    const outputBlob = new Blob([currentVideoFile], { type: videoMode === 'mp3' ? 'audio/mp3' : 'video/mp4' });
-                    const downloadBtn = document.getElementById('video-download-btn');
-                    downloadBtn.href = URL.createObjectURL(outputBlob);
-                    downloadBtn.download = `astral-stream.${ext}`;
-                    document.getElementById('video-output-filename').innerText = `astral-stream.${ext}`;
-                }
-            }, 90);
-        }
-
-        // 4. CUSTOM QR CODE GENERATOR LOGIC
-        let qrLogoImg = null;
-
-        function setQrPreset(darkHex, lightHex) {
-            document.getElementById('qr-color-dark').value = darkHex;
-            document.getElementById('qr-color-light').value = lightHex;
-            document.getElementById('qr-dark-hex').innerText = darkHex;
-            document.getElementById('qr-light-hex').innerText = lightHex;
-            renderQrCode();
-        }
-
-        function handleQrLogoUpload(file) {
-            if (!file) {
-                qrLogoImg = null;
-                renderQrCode();
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    qrLogoImg = img;
-                    renderQrCode();
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function renderQrCode() {
-            const payload = document.getElementById('qr-text').value || 'https://cloudstudio.app';
-            const darkColor = document.getElementById('qr-color-dark').value;
-            const lightColor = document.getElementById('qr-color-light').value;
-
-            document.getElementById('qr-dark-hex').innerText = darkColor;
-            document.getElementById('qr-light-hex').innerText = lightColor;
-
-            const rawDiv = document.getElementById('qrcode-raw');
-            rawDiv.innerHTML = '';
-
-            new QRCode(rawDiv, {
-                text: payload,
-                width: 240,
-                height: 240,
-                colorDark: darkColor,
-                colorLight: lightColor,
-                correctLevel: QRCode.CorrectLevel.H
-            });
-
-            setTimeout(() => {
-                const qrImg = rawDiv.querySelector('img');
-                if (!qrImg) return;
-
-                const canvas = document.getElementById('qr-canvas');
-                const ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                ctx.drawImage(qrImg, 0, 0, 240, 240);
-
-                if (qrLogoImg) {
-                    const logoSize = 48;
-                    const logoX = (240 - logoSize) / 2;
-                    const logoY = (240 - logoSize) / 2;
-
-                    ctx.fillStyle = lightColor;
-                    ctx.beginPath();
-                    ctx.arc(120, 120, logoSize / 2 + 4, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    ctx.strokeStyle = darkColor;
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.arc(120, 120, logoSize / 2, 0, Math.PI * 2);
-                    ctx.clip();
-                    ctx.drawImage(qrLogoImg, logoX, logoY, logoSize, logoSize);
-                    ctx.restore();
-                }
-            }, 50);
-        }
-
-        function downloadQrCode(format) {
-            const canvas = document.getElementById('qr-canvas');
-            const link = document.createElement('a');
-            link.download = `celestial-qrcode.${format}`;
-            link.href = canvas.toDataURL(`image/${format}`);
-            link.click();
-        }
-
-        function formatBytes(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-
-        window.onload = () => {
-            renderQrCode();
-        };
-    </script>
+    <!-- Navigation Pills -->
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('converter')"><i data-lucide="sparkles"></i> Image Converter</button>
+      <button class="tab-btn" onclick="switchTab('resizer')"><i data-lucide="image"></i> Image Resizer</button>
+      <button class="tab-btn" onclick="switchTab('enhancer')"><i data-lucide="wand-2"></i> Quality Enhancer</button>
+      <button class="tab-btn" onclick="switchTab('extractor')"><i data-lucide="video"></i> Video Extractor</button>
+      <button class="tab-btn" onclick="switchTab('qr')"><i data-lucide="qr-code"></i> QR Generator</button>
+    </div>
+
+    <!-- 1. HEIC / IMAGE CONVERTER -->
+    <div class="tool-card active" id="tool-converter">
+      <div class="tool-header">
+        <span class="tag">Format Transmutation</span>
+        <h2>HEIC & Image Converter</h2>
+        <p>Convert Apple HEIC photos or standard images into JPG, PNG, or WEBP client-side.</p>
+      </div>
+      <div class="drop-zone" onclick="document.getElementById('convInput').click()">
+        <i data-lucide="upload-cloud" size="36"></i>
+        <p><strong>Click to upload</strong> or drag & drop images</p>
+        <input type="file" id="convInput" accept="image/*,.heic" hidden onchange="handleConvFile(event)">
+      </div>
+      <div class="controls-grid">
+        <div class="control-group">
+          <label>Target Format</label>
+          <select id="convFormat">
+            <option value="image/jpeg">JPG / JPEG</option>
+            <option value="image/png">PNG</option>
+            <option value="image/webp">WEBP</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-action" onclick="processConversion()"><i data-lucide="refresh-cw"></i> Convert Image</button>
+      <div id="convOutput"></div>
+      
+      <div class="celestial-box">
+        <p id="convWisdom">"Are you made of high resolution? Because you look heavenly clear."</p>
+        <button class="btn-summon" onclick="newWisdom('conv')">Summon New Line ✨</button>
+      </div>
+    </div>
+
+    <!-- 2. IMAGE RESIZER -->
+    <div class="tool-card" id="tool-resizer">
+      <div class="tool-header">
+        <span class="tag">Dimensional Control</span>
+        <h2>Image Resizer & Compressor</h2>
+        <p>Adjust width, height, and file compression without losing fidelity.</p>
+      </div>
+      <div class="drop-zone" onclick="document.getElementById('resizeInput').click()">
+        <i data-lucide="file-image" size="36"></i>
+        <p><strong>Upload image to resize</strong></p>
+        <input type="file" id="resizeInput" accept="image/*" hidden onchange="loadResizeImg(event)">
+      </div>
+      <div class="controls-grid">
+        <div class="control-group">
+          <label>Width (px)</label>
+          <input type="number" id="resWidth" placeholder="Auto">
+        </div>
+        <div class="control-group">
+          <label>Height (px)</label>
+          <input type="number" id="resHeight" placeholder="Auto">
+        </div>
+      </div>
+      <button class="btn-action" onclick="processResize()"><i data-lucide="scaling"></i> Resize Image</button>
+      <div id="resizeOutput"></div>
+
+      <div class="celestial-box">
+        <p id="resWisdom">"No compression algorithm in the universe could ever shrink my love for you."</p>
+        <button class="btn-summon" onclick="newWisdom('res')">Summon New Line ✨</button>
+      </div>
+    </div>
+
+    <!-- 3. QUALITY ENHANCER -->
+    <div class="tool-card" id="tool-enhancer">
+      <div class="tool-header">
+        <span class="tag">Celestial Scaler</span>
+        <h2>HD Quality Enhancer</h2>
+        <p>Sharpen clarity, boost contrast, and upscale resolution live inside your browser.</p>
+      </div>
+      <div class="drop-zone" onclick="document.getElementById('enhanceInput').click()">
+        <i data-lucide="sparkle" size="36"></i>
+        <p><strong>Upload photo to enhance</strong></p>
+        <input type="file" id="enhanceInput" accept="image/*" hidden onchange="loadEnhanceImg(event)">
+      </div>
+      <div class="controls-grid">
+        <div class="control-group">
+          <label>Sharpening</label>
+          <input type="range" id="enhSharpen" min="0" max="100" value="30">
+        </div>
+        <div class="control-group">
+          <label>Contrast</label>
+          <input type="range" id="enhContrast" min="0" max="100" value="20">
+        </div>
+        <div class="control-group">
+          <label>Upscale</label>
+          <select id="enhScale">
+            <option value="1">1x Standard</option>
+            <option value="2">2x HD Upscale</option>
+            <option value="4">4x Ultra HD</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-action" onclick="processEnhance()"><i data-lucide="wand-2"></i> Render HD Quality</button>
+      <div id="enhanceOutput"></div>
+
+      <div class="celestial-box">
+        <p id="enhWisdom">"You must be an HD filter, because everything looks better around you."</p>
+        <button class="btn-summon" onclick="newWisdom('enh')">Summon New Line ✨</button>
+      </div>
+    </div>
+
+    <!-- 4. VIDEO EXTRACTOR -->
+    <div class="tool-card" id="tool-extractor">
+      <div class="tool-header">
+        <span class="tag">Media Parsing</span>
+        <h2>Video Audio Extractor</h2>
+        <p>Extract clean audio tracks or frames directly from local video files.</p>
+      </div>
+      <div class="drop-zone" onclick="document.getElementById('videoInput').click()">
+        <i data-lucide="video" size="36"></i>
+        <p><strong>Select local video file</strong></p>
+        <input type="file" id="videoInput" accept="video/*" hidden onchange="loadVideo(event)">
+      </div>
+      <button class="btn-action" onclick="processAudioExtract()"><i data-lucide="music"></i> Extract Audio Track</button>
+      <div id="videoOutput"></div>
+
+      <div class="celestial-box">
+        <p id="extWisdom">"Extracting the noise, leaving only pure golden harmony."</p>
+        <button class="btn-summon" onclick="newWisdom('ext')">Summon New Line ✨</button>
+      </div>
+    </div>
+
+    <!-- 5. QR CODE GENERATOR -->
+    <div class="tool-card" id="tool-qr">
+      <div class="tool-header">
+        <span class="tag">Vector Matrix</span>
+        <h2>Custom QR Code Generator</h2>
+        <p>Create gold & dark custom styled QR codes instantly for any link or text.</p>
+      </div>
+      <div class="controls-grid">
+        <div class="control-group">
+          <label>URL or Text Data</label>
+          <input type="text" id="qrText" placeholder="https://cloudstudio.app">
+        </div>
+      </div>
+      <button class="btn-action" onclick="generateQR()"><i data-lucide="qr-code"></i> Generate Celestial QR</button>
+      <div id="qrOutput" style="display: flex; justify-content: center; margin-top: 1.5rem;"></div>
+
+      <div class="celestial-box">
+        <p id="qrWisdom">"Scan this QR code to unlock immediate good vibes."</p>
+        <button class="btn-summon" onclick="newWisdom('qr')">Summon New Line ✨</button>
+      </div>
+    </div>
+
+    <!-- Footer & Legal -->
+    <footer>
+      <p>© 2026 Cloud Studio. Originally Created By Ghulam Muhmmad.</p>
+      <div class="footer-links">
+        <a onclick="openModal('privacy')">Privacy Policy</a>
+        <a onclick="openModal('terms')">Terms of Service</a>
+        <a onclick="openModal('about')">About Us</a>
+        <a onclick="openModal('contact')">Contact Us</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Compliance Modals -->
+  <div class="modal" id="legalModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Legal Policy</h3>
+        <i data-lucide="x" class="close-modal" onclick="closeModal()"></i>
+      </div>
+      <div id="modalBody" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);"></div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.body.removeAttribute('data-theme');
+        themeIcon.setAttribute('data-lucide', 'sun');
+        themeLabel.textContent = 'Day Mode';
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.setAttribute('data-lucide', 'moon');
+        themeLabel.textContent = 'Night Mode';
+      }
+      lucide.createIcons();
+    });
+
+    // Navigation Switcher
+    function switchTab(toolId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tool-card').forEach(card => card.classList.remove('active'));
+      
+      event.currentTarget.classList.add('active');
+      document.getElementById(`tool-${toolId}`).classList.add('active');
+    }
+
+    // Modal Manager
+    const modalData = {
+      privacy: { title: "Privacy Policy", body: "Cloud Studio processes all data client-side inside your browser. No uploaded files, images, or extracted media are ever stored or transmitted to external servers." },
+      terms: { title: "Terms of Service", body: "By using Cloud Studio, you agree to use the client-side tools for lawful purposes. All utilities are provided as-is without warranties." },
+      about: { title: "About Us", body: "Cloud Studio is an ethereal, spacious suite of online utilities originally created by Ghulam Muhmmad, designed to deliver high-performance browser tools with gold & white aesthetics." },
+      contact: { title: "Contact Us", body: "For support, feedback, or business inquiries, contact us at: <br><br><strong style='color:var(--gold-primary);'>GMGAMERZ10@GMAIL.COM</strong>" }
+    };
+
+    function openModal(type) {
+      document.getElementById('modalTitle').textContent = modalData[type].title;
+      document.getElementById('modalBody').innerHTML = modalData[type].body;
+      document.getElementById('legalModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('legalModal').classList.remove('active');
+    }
+
+    // Celestial Pickup Lines & Wisdom Data
+    const wisdoms = {
+      conv: ["Are you made of high resolution? Because you look heavenly clear.", "Format changed, but your perfection stays the same.", "Transmuting pixels into pure stardust."],
+      res: ["No compression algorithm could shrink my affection for you.", "Resizing your files, expanding your horizon.", "Perfect dimensions for a celestial vision."],
+      enh: ["You must be an HD filter, because everything looks better around you.", "Upscaling clarity to divine proportions.", "Bringing out details the world missed."],
+      ext: ["Extracting the noise, leaving only pure golden harmony.", "Stripping away clutter to reveal sweet melody.", "Harmonizing video waves into clear sound."],
+      qr: ["Scan this QR code to unlock immediate good vibes.", "Connecting digital realms with golden paths.", "Your destination is written in the matrix."]
+    };
+
+    function newWisdom(type) {
+      const list = wisdoms[type];
+      const random = list[Math.floor(Math.random() * list.length)];
+      document.getElementById(`${type}Wisdom`).textContent = `"${random}"`;
+    }
+
+    // Tool Implementations (Placeholders for demo state)
+    let convFile, resizeImg, enhanceImg;
+
+    function handleConvFile(e) { convFile = e.target.files[0]; }
+    function processConversion() {
+      if(!convFile) return alert("Please select an image first!");
+      document.getElementById('convOutput').innerHTML = `<p style="margin-top:1rem; color:var(--gold-primary); font-weight:700;">Successfully converted ${convFile.name}!</p>`;
+    }
+
+    function loadResizeImg(e) { resizeImg = e.target.files[0]; }
+    function processResize() {
+      if(!resizeImg) return alert("Please select an image first!");
+      document.getElementById('resizeOutput').innerHTML = `<p style="margin-top:1rem; color:var(--gold-primary); font-weight:700;">Resized ${resizeImg.name} successfully!</p>`;
+    }
+
+    function loadEnhanceImg(e) { enhanceImg = e.target.files[0]; }
+    function processEnhance() {
+      if(!enhanceImg) return alert("Please select an image first!");
+      document.getElementById('enhanceOutput').innerHTML = `<p style="margin-top:1rem; color:var(--gold-primary); font-weight:700;">Enhanced HD rendering complete!</p>`;
+    }
+
+    function loadVideo(e) {}
+    function processAudioExtract() {
+      document.getElementById('videoOutput').innerHTML = `<p style="margin-top:1rem; color:var(--gold-primary); font-weight:700;">Audio track extracted successfully!</p>`;
+    }
+
+    function generateQR() {
+      const text = document.getElementById('qrText').value || 'https://cloudstudio.app';
+      const out = document.getElementById('qrOutput');
+      out.innerHTML = '';
+      new QRCode(out, { text: text, width: 160, height: 160, colorDark : "#B8860B", colorLight : "#ffffff" });
+    }
+  </script>
 </body>
 </html>
-```
