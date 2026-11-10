@@ -229,19 +229,19 @@
         ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 9999px; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col relative">
+<body class="min-h-screen flex flex-col relative pt-6">
 
     <div class="ambient-glow glow-lavender"></div>
     <div class="ambient-glow glow-sky"></div>
 
     <!-- MAIN APP HEADER -->
-    <header class="relative z-20 sticky top-0 bg-white/80 dark:bg-[#09090C]/80 backdrop-blur-xl border-b border-amber-500/20 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5">
+    <header class="relative z-20 max-w-7xl w-full mx-auto px-4 lg:px-12 mb-6">
+        <div class="bg-white/90 dark:bg-[#09090C]/90 backdrop-blur-xl border border-amber-500/30 rounded-3xl p-6 shadow-xl">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 
-                <div class="flex items-center space-x-3">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-200 flex items-center justify-center text-white shadow-lg shadow-amber-500/20 border border-amber-300">
-                        <i class="fa-solid fa-cloud-bolt text-xl sparkle-icon text-amber-950"></i>
+                <div class="flex items-center space-x-3.5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-200 flex items-center justify-center text-white shadow-lg shadow-amber-500/25 border-2 border-amber-300 shrink-0 p-3">
+                        <i class="fa-solid fa-cloud-bolt text-2xl sparkle-icon text-amber-950"></i>
                     </div>
                     <div>
                         <div class="flex items-center space-x-2">
@@ -264,14 +264,14 @@
                 </div>
             </div>
 
-            <!-- Header Ad Unit Placeholder -->
-            <div class="mt-4 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 rounded-xl p-3 text-center min-h-[60px] flex flex-col justify-center items-center">
+            <!-- AdSense Banner Placeholder -->
+            <div class="mt-5 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 rounded-xl p-3 text-center min-h-[60px] flex flex-col justify-center items-center">
                 <span class="text-[10px] font-mono text-amber-800 dark:text-amber-400 uppercase tracking-widest">Advertisement</span>
                 <div class="text-xs text-amber-900/60 dark:text-amber-400/60 font-mono mt-0.5">[AdSense Responsive Leaderboard Unit]</div>
             </div>
 
-            <!-- TOP NAVIGATION TABS WITH FIXED ICONS -->
-            <nav class="flex items-center space-x-3 mt-4 overflow-x-auto pb-1 no-scrollbar">
+            <!-- TOP NAVIGATION TABS WITH ICONS -->
+            <nav class="flex items-center space-x-3 mt-5 overflow-x-auto pb-1 no-scrollbar">
                 <button onclick="switchTool('heic')" id="nav-heic" class="heaven-tab active px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2.5 whitespace-nowrap">
                     <i class="fa-solid fa-sparkles text-amber-600"></i>
                     <span>Image Converter</span>
@@ -297,7 +297,7 @@
     </header>
 
     <!-- MAIN BODY CONTAINER -->
-    <main class="relative z-10 flex-grow max-w-7xl w-full mx-auto px-6 lg:px-12 py-10 space-y-12">
+    <main class="relative z-10 flex-grow max-w-7xl w-full mx-auto px-4 lg:px-12 py-2 space-y-12">
         
         <!-- TOOL 1: IMAGE CONVERTER -->
         <section id="tool-heic" class="tool-view block">
@@ -305,7 +305,7 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 dark:border-amber-900/40 pb-6 gap-4">
                     <div>
                         <div class="flex items-center space-x-2 text-amber-700 dark:text-amber-400 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-cloud"></i>
+                            <i class="fa-solid fa-sparkles text-amber-600"></i>
                             <span>Format Transmutation</span>
                         </div>
                         <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900 dark:text-white">HEIC & Image Converter</h2>
@@ -374,7 +374,7 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 dark:border-amber-900/40 pb-6 gap-4">
                     <div>
                         <div class="flex items-center space-x-2 text-amber-700 dark:text-amber-400 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-feather-pointed"></i>
+                            <i class="fa-solid fa-feather-pointed text-amber-600"></i>
                             <span>Dimension & Mass Scaling</span>
                         </div>
                         <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900 dark:text-white">Image Resizer & Compressor</h2>
@@ -472,7 +472,7 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 dark:border-amber-900/40 pb-6 gap-4">
                     <div>
                         <div class="flex items-center space-x-2 text-amber-700 dark:text-amber-400 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i>
                             <span>Celestial Scaler</span>
                         </div>
                         <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900 dark:text-white">HD Quality Enhancer</h2>
@@ -484,7 +484,7 @@
                     <div class="lg:col-span-5 space-y-6">
                         <div id="enh-dropzone" onclick="document.getElementById('enh-input').click()" class="heaven-dropzone rounded-2xl p-8 text-center cursor-pointer">
                             <input type="file" id="enh-input" accept="image/*" class="hidden" onchange="loadEnhanceImage(this.files[0])">
-                            <i class="fa-solid fa-sparkle text-3xl text-amber-600 mb-3 block sparkle-icon"></i>
+                            <i class="fa-solid fa-sparkles text-3xl text-amber-600 mb-3 block sparkle-icon"></i>
                             <span class="text-sm font-bold text-gray-900 dark:text-white block">Upload Photo to Enhance</span>
                             <span class="text-xs text-amber-800 dark:text-amber-400 font-mono block mt-1">Instantly sharpen & upscale</span>
                         </div>
@@ -580,7 +580,7 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 dark:border-amber-900/40 pb-6 gap-4">
                     <div>
                         <div class="flex items-center space-x-2 text-amber-700 dark:text-amber-400 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-film"></i>
+                            <i class="fa-solid fa-film text-amber-600"></i>
                             <span>Astral Audio Streamer</span>
                         </div>
                         <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900 dark:text-white">Video & Audio Extractor</h2>
@@ -677,7 +677,7 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-amber-200/60 dark:border-amber-900/40 pb-6 gap-4">
                     <div>
                         <div class="flex items-center space-x-2 text-amber-700 dark:text-amber-400 text-xs uppercase font-bold tracking-widest mb-1">
-                            <i class="fa-solid fa-qrcode"></i>
+                            <i class="fa-solid fa-qrcode text-amber-600"></i>
                             <span>Divine Portal Link</span>
                         </div>
                         <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900 dark:text-white">Custom QR Code Generator</h2>
@@ -850,82 +850,119 @@
             document.getElementById('policy-modal').classList.add('hidden');
         }
 
-        // GENERATE 100+ DYNAMIC NON-REPEATING PICKUP LINES PER TOOL
-        function buildWisdomVault() {
-            const base = {
-                heic: [
-                    "Are you a HEIC photo? Because you're so high-res, standard mortals can't even handle your raw format.",
-                    "You must be an image converter, because you just transmuted my gloomy day into pure sunshine.",
-                    "Is your name PNG? Because your transparency is divine and you have zero loss in quality.",
-                    "Celestial Fact: HEIC uses half the space of JPG while preserving angelically sharp pixel detail.",
-                    "They say beauty is in the eye of the beholder, but in your case, it's rendered in 8K loss-free resolution.",
-                    "Every pixel of yours shines brighter than a supernova in the Orion arm.",
-                    "You convert my chaotic thoughts into pristine organized arrays instantly.",
-                    "Are you lossless compression? Because you never lose a single trace of your charm.",
-                    "Transmuting reality has never been easier since you stepped into my frame.",
-                    "Your smile has a higher color depth than 10-bit HDR displays."
-                ],
-                compress: [
-                    "Are you an image compressor? Because every time you come near me, my heart skips a byte and floats to cloud nine.",
-                    "You don't need compression—your beauty is already light enough to float straight to heaven.",
-                    "Is your density reduced? Because being around you makes all my heavy earthly worries featherlight.",
-                    "Celestial Fact: WebP compression reduces file size by over 30% compared to JPG without losing heavenly glow.",
-                    "My love for you has an infinite aspect ratio locked—it scales perfectly no matter the dimensions.",
-                    "You shrink all my troubles down into manageable, joyful byte sizes.",
-                    "Are you a resizing matrix? Because you fit perfectly into every corner of my heart.",
-                    "Even when scaling down, your magnificence expands across the universe.",
-                    "You manage my bandwidth with absolute grace and elegance.",
-                    "No algorithm could ever quantify how much space you occupy in my mind."
-                ],
-                enhance: [
-                    "You must be an HD filter, because everything looks better around you.",
-                    "You must be a 4x upscale filter, because you bring out divine details I never noticed before.",
-                    "No sharpen algorithm in the world could make your features look any more flawless.",
-                    "Celestial Fact: Multi-pass canvas convolutions enhance clarity without adding artificial noise.",
-                    "If I could adjust your contrast slider, I'd turn up your brightness to shine over the entire universe.",
-                    "You bring crystal clarity to a world full of blurry uncertainties.",
-                    "Every convolution kernel in existence is jealous of your natural sharpness.",
-                    "Are you an exposure correction tool? Because you light up my darkest rooms.",
-                    "You upscale my happiness multiplier higher than 16K ultra HD.",
-                    "No artifact or chromatic aberration can survive your radiant aura."
-                ],
-                video: [
-                    "Are you an MP3 extractor? Because out of all the noise in the universe, you're the only harmony I want to isolate.",
-                    "You must be an astral audio stream, because your voice plays on a loop in my head all day.",
-                    "If life was a video stream, I'd extract every single second spent with you into an eternal MP4 file.",
-                    "Celestial Fact: Sound waves travel through clouds, but your voice travels straight through my soul.",
-                    "Are you a 60fps video? Because you move through my mind smoother than a cloud on a summer breeze.",
-                    "You isolate the sweetest frequencies out of this noisy world.",
-                    "Are you a master audio track? Because my heart beats in sync with your rhythm.",
-                    "Every frame of your life story is a cinematic masterpiece.",
-                    "You trim away all filler scenes and leave only pure romance.",
-                    "Are you a surround sound system? Because your love fills every corner of my room."
-                ],
-                qrcode: [
-                    "Are you a QR code? Because every time I scan you, you redirect me straight to paradise.",
-                    "No matter what payload you encode, you'll always be the shortcut to my heart.",
-                    "Is your background transparent? Because I can see right through to your heavenly soul.",
-                    "Celestial Fact: QR codes contain error correction levels up to 30%, meaning even covered logos scan with divine accuracy.",
-                    "Our connection is instant—no Wi-Fi password required, just pure celestial scanning.",
-                    "You hold a secret destination in your matrix that only I can unlock.",
-                    "Scanning your smile gives me instant access to universal joy.",
-                    "Are you a high-density dot matrix? Because your intricate details mesmerize me.",
-                    "You direct my compass straight toward love and light.",
-                    "Even with 30% error correction, I'd never lose track of you."
-                ]
-            };
+        const celestialWisdom = {
+            heic: [
+                "Are you a HEIC photo? Because you're so high-res, standard mortals can't even handle your raw format.",
+                "You must be an image converter, because you just transmuted my gloomy day into pure sunshine.",
+                "Is your name PNG? Because your transparency is divine and you have zero loss in quality.",
+                "Celestial Fact: HEIC uses half the space of JPG while preserving angelically sharp pixel detail.",
+                "They say beauty is in the eye of the beholder, but in your case, it's rendered in 8K loss-free resolution.",
+                "Are you an Apple device? Because your aura is locked securely in ecosystem perfection.",
+                "Every pixel of yours shines brighter than a supernova in the Orion arm.",
+                "You convert my chaotic thoughts into pristine organized arrays instantly.",
+                "Are you lossless compression? Because you never lose a single trace of your charm.",
+                "Transmuting reality has never been easier since you stepped into my frame.",
+                "Your smile has a higher color depth than 10-bit HDR displays.",
+                "Are you a batch converter? Because you process all my affections simultaneously.",
+                "Even lightning bolts across the heavens envy your energetic radiance.",
+                "You must be metadata, because you complete every single detail of my life.",
+                "Floating on cloud nine feels like standing right beside your browser window.",
+                "Are you an SVG vector? Because you scale infinitely without ever losing your edge.",
+                "Your presence clears out all cache and refreshes my soul entirely.",
+                "If love had an extension, yours would definitely be .heaven",
+                "You render my world in gorgeous gold and ethereal white tones.",
+                "Are you a high-speed buffer? Because time stops whenever you load."
+            ],
+            compress: [
+                "Are you an image compressor? Because every time you come near me, my heart skips a byte and floats to cloud nine.",
+                "You don't need compression—your beauty is already light enough to float straight to heaven.",
+                "Is your density reduced? Because being around you makes all my heavy earthly worries featherlight.",
+                "Celestial Fact: WebP compression reduces file size by over 30% compared to JPG without losing heavenly glow.",
+                "My love for you has an infinite aspect ratio locked—it scales perfectly no matter the dimensions.",
+                "You shrink all my troubles down into manageable, joyful byte sizes.",
+                "Are you a resizing matrix? Because you fit perfectly into every corner of my heart.",
+                "Even when scaling down, your magnificence expands across the universe.",
+                "You manage my bandwidth with absolute grace and elegance.",
+                "No algorithm could ever quantify how much space you occupy in my mind.",
+                "Trimming away the noise and leaving only pure golden affection.",
+                "Are you a DPI booster? Because your resolution makes my heart beat faster.",
+                "You preserve every delicate detail while making my spirit weightless.",
+                "Floating through cyberspace is effortless with you as my co-pilot.",
+                "Your gravitational pull compresses time itself whenever we converse.",
+                "Are you a thumbnail generator? Because you captured my entire essence in one glance.",
+                "Scaling new heights is easy when I have your golden inspiration.",
+                "You optimize every single second of my daily timeline.",
+                "No distortion can ever warp the perfection of our connection.",
+                "Featherlight and lightning fast—just like your heavenly smile."
+            ],
+            enhance: [
+                "You must be an HD filter, because everything looks better around you.",
+                "You must be a 4x upscale filter, because you bring out divine details I never noticed before.",
+                "No sharpen algorithm in the world could make your features look any more flawless.",
+                "Celestial Fact: Multi-pass canvas convolutions enhance clarity without adding artificial noise.",
+                "If I could adjust your contrast slider, I'd turn up your brightness to shine over the entire universe.",
+                "You bring crystal clarity to a world full of blurry uncertainties.",
+                "Every convolution kernel in existence is jealous of your natural sharpness.",
+                "Are you an exposure correction tool? Because you light up my darkest rooms.",
+                "You upscale my happiness multiplier higher than 16K ultra HD.",
+                "No artifact or chromatic aberration can survive your radiant aura.",
+                "Sharpening my focus has never been simpler since you entered my orbit.",
+                "You saturate my existence with vibrant golds and pristine whites.",
+                "Are you a denoise filter? Because you wipe away all my static anxiety.",
+                "Your brilliance shines brighter than a thousand celestial stars combined.",
+                "Rendering perfection in real-time is your natural superpower.",
+                "You add cinematic depth to every ordinary moment of my day.",
+                "Are you a gamma curve? Because you balance my entire spectrum of emotions.",
+                "Your elegance is rendered at sixty frames per second in my memory.",
+                "Unlocking ultra HD happiness is just one look from you away.",
+                "You polish my rough edges into a shining golden masterpiece."
+            ],
+            video: [
+                "Are you an MP3 extractor? Because out of all the noise in the universe, you're the only harmony I want to isolate.",
+                "You must be an astral audio stream, because your voice plays on a loop in my head all day.",
+                "If life was a video stream, I'd extract every single second spent with you into an eternal MP4 file.",
+                "Celestial Fact: Sound waves travel through clouds, but your voice travels straight through my soul.",
+                "Are you a 60fps video? Because you move through my mind smoother than a cloud on a summer breeze.",
+                "You isolate the sweetest frequencies out of this noisy world.",
+                "Are you a master audio track? Because my heart beats in sync with your rhythm.",
+                "Every frame of your life story is a cinematic masterpiece.",
+                "You trim away all filler scenes and leave only pure romance.",
+                "Are you a surround sound system? Because your love fills every corner of my room.",
+                "Extracting joy from every moment feels effortless by your side.",
+                "Your laughter is the sweetest melody ever recorded in history.",
+                "Are you a lossless codec? Because I don't want to miss a single beat of your voice.",
+                "Streaming starlight directly into my consciousness.",
+                "You turn every silent movie of my life into a grand musical symphony.",
+                "Are you a playback button? Because I want to replay our memories forever.",
+                "Your presence echoes with timeless golden harmonies.",
+                "Capturing the frequency of your heart is my favorite pursuit.",
+                "Even Dolby Atmos can't compete with the resonance of your affection.",
+                "You are the soundtrack to my greatest celestial adventures."
+            ],
+            qrcode: [
+                "Are you a QR code? Because every time I scan you, you redirect me straight to paradise.",
+                "No matter what payload you encode, you'll always be the shortcut to my heart.",
+                "Is your background transparent? Because I can see right through to your heavenly soul.",
+                "Celestial Fact: QR codes contain error correction levels up to 30%, meaning even covered logos scan with divine accuracy.",
+                "Our connection is instant—no Wi-Fi password required, just pure celestial scanning.",
+                "You hold a secret destination in your matrix that only I can unlock.",
+                "Scanning your smile gives me instant access to universal joy.",
+                "Are you a high-density dot matrix? Because your intricate details mesmerize me.",
+                "You direct my compass straight toward love and light.",
+                "Even with 30% error correction, I'd never lose track of you.",
+                "You encode happiness into every square millimeter of my day.",
+                "Are you a portal? Because stepping near you transports me to another dimension.",
+                "Your golden matrix aligns perfectly with my destiny.",
+                "One quick scan and my entire world lights up.",
+                "You are the master key to unlocking all of heaven's treasures.",
+                "No cipher in the cosmos could ever decode how much I adore you.",
+                "Linking our hearts together with indestructible vector precision.",
+                "You turn ordinary links into extraordinary golden gateways.",
+                "Scanning your aura provides instant verification of true love.",
+                "Your presence is the ultimate destination code."
+            ]
+        };
 
-            const fullVault = {};
-            for (let tool in base) {
-                fullVault[tool] = [...base[tool]];
-                for (let i = 11; i <= 105; i++) {
-                    fullVault[tool].push(`Celestial Line #${i} [${tool.toUpperCase()}]: Your divine aura renders with absolute clarity across quantum matrix space iteration #${i}.`);
-                }
-            }
-            return fullVault;
-        }
-
-        const celestialWisdom = buildWisdomVault();
         const shownIndices = { heic: [], compress: [], enhance: [], video: [], qrcode: [] };
 
         function summonNewWisdom(toolId) {
@@ -960,7 +997,6 @@
             if(toolId === 'qrcode') renderQrCode();
         }
 
-        // 1. HEIC / IMAGE CONVERTER ENGINE (WITH PREVIEW & CONVERSION LOGIC)
         let heicFiles = [];
         function handleHeicFiles(files) {
             if(!files || !files.length) return;
@@ -1025,7 +1061,6 @@
             });
         }
 
-        // 2. COMPRESSOR ENGINE
         let compImg = null, compFile = null;
         function loadCompressorImage(file) {
             if(!file) return;
@@ -1098,7 +1133,6 @@
             }, fmt, qual);
         }
 
-        // 3. QUALITY ENHANCER ENGINE
         let enhImg = null, upscaleScale = 1;
         function loadEnhanceImage(file) {
             if(!file) return;
@@ -1193,7 +1227,6 @@
             a.click();
         }
 
-        // 4. VIDEO EXTRACTOR ENGINE
         let vidFile = null, vidMode = 'mp3';
         function loadVideoSource(file) {
             if(!file) return;
@@ -1234,7 +1267,6 @@
             }, 80);
         }
 
-        // 5. QR CODE ENGINE
         let qrLogo = null;
         function setQrPreset(d, l) {
             document.getElementById('qr-color-dark').value = d;
