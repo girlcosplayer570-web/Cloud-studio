@@ -8,7 +8,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Outfits & Plus Jakarta Sans -->
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -55,9 +55,10 @@
             color: #1E1B18;
             overflow-x: hidden;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Heavenly White & Gold Background Glows */
+        /* Ambient Glowing Nebulae */
         .ambient-glow {
             position: fixed;
             border-radius: 50%;
@@ -91,7 +92,7 @@
             100% { transform: translateY(30px) scale(0.95); }
         }
 
-        /* Pure White & Gold Card */
+        /* Cloud Card */
         .cloud-card {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(20px);
@@ -106,7 +107,7 @@
             box-shadow: 0 25px 60px rgba(212, 175, 55, 0.15), 0 0 40px rgba(212, 175, 55, 0.1);
         }
 
-        /* Heavenly White & Gold Tab Buttons */
+        /* Heavenly Tabs */
         .heaven-tab {
             background: #FFFFFF;
             border: 1px solid rgba(212, 175, 55, 0.3);
@@ -179,14 +180,12 @@
             outline: none !important;
         }
 
-        /* Text Gold Gradient */
         .text-gold-gradient {
             background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Animated Sparkles */
         .sparkle-icon {
             animation: pulseSparkle 2s ease-in-out infinite alternate;
         }
@@ -196,7 +195,6 @@
             100% { opacity: 1; transform: scale(1.1) rotate(10deg); }
         }
 
-        /* Smooth View Transitions */
         .tool-view {
             animation: fadeInView 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -206,7 +204,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #FAFAFC; }
         ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 9999px; }
@@ -300,14 +297,13 @@
                 </div>
             </div>
 
-            <!-- Google AdSense Header Banner Placeholder -->
+            <!-- AdSense Header Banner Placeholder -->
             <div class="mt-4 bg-amber-50/50 border border-amber-200/60 rounded-xl p-3 text-center min-h-[60px] flex flex-col justify-center items-center">
                 <span class="text-[10px] font-mono text-amber-800 uppercase tracking-widest">Advertisement</span>
-                <!-- Replace with your Google AdSense code snippet -->
                 <div class="text-xs text-amber-900/60 font-mono mt-0.5">[AdSense Responsive Leaderboard Unit]</div>
             </div>
 
-            <!-- TOP NAVIGATION TABS (DEDICATED BUTTONS) -->
+            <!-- TOP NAVIGATION TABS -->
             <nav class="flex items-center space-x-3 mt-4 overflow-x-auto pb-1 no-scrollbar">
                 <button onclick="switchTool('heic')" id="nav-heic" class="heaven-tab active px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2.5 whitespace-nowrap">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -319,7 +315,6 @@
                     <span>Image Resizer</span>
                 </button>
 
-                <!-- QUALITY ENHANCER NAV BUTTON WITH ICON RESTORED -->
                 <button onclick="switchTool('enhance')" id="nav-enhance" class="heaven-tab px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2.5 whitespace-nowrap">
                     <i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i>
                     <span>Quality Enhancer</span>
@@ -394,7 +389,7 @@
                 <div id="heic-results" class="space-y-3"></div>
             </div>
 
-            <!-- HEAVENLY PICKUP LINES & CELESTIAL WISDOM SECTION -->
+            <!-- Heavenly Wisdom Box with Full 100+ Quotes -->
             <div class="mt-8 cloud-card rounded-3xl p-8 border-amber-300/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/80 to-amber-100/50">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div class="space-y-1">
@@ -409,23 +404,6 @@
                         <span>Summon New Line</span>
                     </button>
                 </div>
-            </div>
-
-            <!-- AdSense Mid-Page Banner -->
-            <div class="mt-8 bg-amber-50/50 border border-amber-200/60 rounded-2xl p-4 text-center min-h-[90px] flex flex-col justify-center items-center">
-                <span class="text-[10px] font-mono text-amber-800 uppercase tracking-widest">Advertisement</span>
-                <div class="text-xs text-amber-900/60 font-mono mt-0.5">[AdSense In-Feed Responsive Unit]</div>
-            </div>
-
-            <!-- ADSENSE CONTENT REQUIREMENT: Detailed Tool Description & Privacy Assurance -->
-            <div class="mt-8 cloud-card rounded-3xl p-8 space-y-4">
-                <h3 class="text-lg font-bold text-gray-900 font-display flex items-center space-x-2">
-                    <i class="fa-solid fa-shield-halved text-amber-600"></i>
-                    <span>About Image Conversion & Client-Side Privacy</span>
-                </h3>
-                <p class="text-xs text-gray-600 leading-relaxed">
-                    Cloud Studio provides state-of-the-art image format transmutation, allowing you to convert Apple HEIC/HEIF files and standard PNG, JPG, or WEBP formats. All processing is performed directly in your browser through local Web APIs. Your images are never uploaded to remote servers, ensuring 100% data confidentiality and instantaneous processing speed.
-                </p>
             </div>
         </section>
 
@@ -640,7 +618,7 @@
             </div>
         </section>
 
-        <!-- ================= TOOL 4: VIDEO TO MP3 / MP4 EXTRACTOR ================= -->
+        <!-- ================= TOOL 4: VIDEO TO AUDIO EXTRACTOR ================= -->
         <section id="tool-video" class="tool-view hidden">
             <div class="cloud-card rounded-3xl p-8 lg:p-12 space-y-8">
                 
@@ -651,9 +629,9 @@
                             <span>Astral Audio Streamer</span>
                         </div>
                         <h2 class="text-2xl lg:text-3xl font-extrabold font-display text-gray-900">Video & Audio Extractor</h2>
-                        <p class="text-sm text-gray-600 mt-1">Extract pure heavenly audio tracks (MP3) or output smooth video streams.</p>
+                        <p class="text-sm text-gray-600 mt-1">Extract pure heavenly audio tracks (WAV) or output smooth video streams.</p>
                     </div>
-                    <span class="self-start md:self-auto text-xs font-mono bg-amber-100 text-amber-900 font-bold px-3 py-1.5 rounded-full border border-amber-300">Web Audio Stream</span>
+                    <span class="self-start md:self-auto text-xs font-mono bg-amber-100 text-amber-900 font-bold px-3 py-1.5 rounded-full border border-amber-300">Web Audio API</span>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -678,9 +656,9 @@
                             <h4 class="text-xs font-bold uppercase tracking-wider text-amber-900 border-b border-amber-200/60 pb-2">Extraction Mode</h4>
                             
                             <div class="grid grid-cols-2 gap-4">
-                                <button onclick="setVideoMode('mp3')" id="mode-mp3" class="px-5 py-4 rounded-xl border border-amber-400 text-amber-950 bg-amber-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2">
+                                <button onclick="setVideoMode('wav')" id="mode-wav" class="px-5 py-4 rounded-xl border border-amber-400 text-amber-950 bg-amber-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2">
                                     <i class="fa-solid fa-music"></i>
-                                    <span>Extract MP3 Audio</span>
+                                    <span>Extract Audio (WAV)</span>
                                 </button>
                                 <button onclick="setVideoMode('mp4')" id="mode-mp4" class="px-5 py-4 rounded-xl border border-amber-300/40 text-amber-800 hover:border-amber-400 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 bg-white">
                                     <i class="fa-solid fa-film"></i>
@@ -690,7 +668,7 @@
 
                             <div id="video-progress-container" class="hidden space-y-3 pt-2">
                                 <div class="flex justify-between text-xs font-mono">
-                                    <span class="text-amber-900 font-bold">Summoning Stream...</span>
+                                    <span class="text-amber-900 font-bold" id="video-status-text">Decoding Audio Buffer...</span>
                                     <span id="video-progress-percent" class="text-gray-900 font-bold">0%</span>
                                 </div>
                                 <div class="w-full bg-amber-100 rounded-full h-2.5 border border-amber-300 overflow-hidden">
@@ -709,7 +687,7 @@
                                 <i class="fa-solid fa-circle-check text-amber-600 text-xl"></i>
                                 <div>
                                     <span class="text-xs font-bold text-gray-900 block">Celestial File Ready</span>
-                                    <span id="video-output-filename" class="text-xs font-mono text-amber-900 font-bold">extracted-stream.mp3</span>
+                                    <span id="video-output-filename" class="text-xs font-mono text-amber-900 font-bold">extracted-stream.wav</span>
                                 </div>
                             </div>
                             <a id="video-download-btn" class="px-4 py-2 bg-amber-500 text-white font-bold rounded-xl text-xs uppercase tracking-wider flex items-center space-x-1 hover:bg-amber-600 transition-all shadow-md">
@@ -721,7 +699,6 @@
                 </div>
             </div>
 
-            <!-- HEAVENLY PICKUP LINES SECTION -->
             <div class="mt-8 cloud-card rounded-3xl p-8 border-amber-300/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/80 to-amber-100/50">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div class="space-y-1">
@@ -739,7 +716,7 @@
             </div>
         </section>
 
-        <!-- ================= TOOL 4: CUSTOM QR CODE GENERATOR ================= -->
+        <!-- ================= TOOL 5: QR CODE GENERATOR ================= -->
         <section id="tool-qrcode" class="tool-view hidden">
             <div class="cloud-card rounded-3xl p-8 lg:p-12 space-y-8">
                 
@@ -814,7 +791,6 @@
                 </div>
             </div>
 
-            <!-- HEAVENLY PICKUP LINES SECTION -->
             <div class="mt-8 cloud-card rounded-3xl p-8 border-amber-300/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/80 to-amber-100/50">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div class="space-y-1">
@@ -846,7 +822,6 @@
                 A high-performance utility suite offering client-side image conversion, resolution upscaling, video extraction, and custom QR code generation.
             </p>
 
-            <!-- ADSENSE LEGAL & POLICY NAVIGATION LINKS -->
             <div class="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-amber-200/40 text-xs font-semibold text-amber-900">
                 <button onclick="openModal('privacy')" class="hover:underline hover:text-amber-700 transition-all">Privacy Policy</button>
                 <span>•</span>
@@ -861,73 +836,72 @@
         </div>
     </footer>
 
-    <!-- ADSENSE COMPLIANCE POLICY MODALS -->
+    <!-- POLICY MODAL -->
     <div id="policy-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="cloud-card max-w-2xl w-full rounded-3xl p-8 max-h-[85vh] overflow-y-auto space-y-6 relative border-amber-300">
             <div class="flex items-center justify-between border-b border-amber-200/60 pb-4">
                 <h3 id="modal-title" class="text-xl font-extrabold font-display text-gray-900">Policy Document</h3>
                 <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-amber-100 text-amber-900 font-bold flex items-center justify-center hover:bg-amber-200 transition-all">✕</button>
             </div>
-            <div id="modal-content" class="text-xs text-gray-700 leading-relaxed space-y-4 font-sans">
-                <!-- Dynamic Content Injected Here -->
-            </div>
+            <div id="modal-content" class="text-xs text-gray-700 leading-relaxed space-y-4 font-sans"></div>
             <div class="text-right pt-4 border-t border-amber-200/60">
                 <button onclick="closeModal()" class="btn-celestial px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider">Close Window</button>
             </div>
         </div>
     </div>
 
-    <!-- INTERACTIVE JAVASCRIPT ENGINE -->
+    <!-- FULL JAVASCRIPT ENGINE & WISDOM ARRAYS -->
     <script>
-        // ADSENSE COMPLIANCE MODAL DATA
         const policyDocs = {
             privacy: {
                 title: "Privacy Policy",
                 content: `
                     <p><strong>Effective Date:</strong> November 2026</p>
-                    <p>At Cloud Studio, accessible from our web platform, your privacy is of paramount importance to us. This Privacy Policy outlines the types of information collected and recorded by Cloud Studio and how we protect it.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">1. Client-Side Data Processing</h4>
-                    <p>All tool operations—including HEIC conversion, image resizing, canvas quality enhancement, video extraction, and QR code rendering—take place 100% inside your web browser. None of your uploaded files, media, or converted data are transmitted to or stored on external servers.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">2. Cookies and Web Beacons</h4>
-                    <p>Like any other website, Cloud Studio uses 'cookies'. These cookies are used to store preferences and optimize user experience. We also partner with third-party vendors such as Google AdSense, which may use DART cookies to serve ads based on visits to our site and other sites on the internet.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">3. Third Party Ad Partners</h4>
-                    <p>Google AdSense may use technologies like cookies, JavaScript, or Web Beacons in their respective advertisements. You can choose to disable cookies through your individual browser options.</p>
+                    <p>At Cloud Studio, your privacy is paramount. All tool operations take place 100% inside your web browser. None of your files or media are transmitted to external servers.</p>
+                    <h4 class="font-bold text-amber-900 text-sm mt-3">1. Client-Side Processing</h4>
+                    <p>Image conversions, canvas quality enhancement, Web Audio extractions, and QR code rendering occur locally using HTML5 Web APIs.</p>
+                    <h4 class="font-bold text-amber-900 text-sm mt-3">2. Third Party Advertisements</h4>
+                    <p>Google AdSense may serve ads and use cookies to personalize advertising based on user interactions.</p>
                 `
             },
             terms: {
                 title: "Terms of Service",
                 content: `
-                    <p>Welcome to Cloud Studio! By accessing or using our digital utilities, you agree to comply with and be bound by the following Terms of Service.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">1. Use of Tools</h4>
-                    <p>Cloud Studio provides free browser-based conversion and editing tools. You are free to use these tools for personal or commercial purposes, provided your use complies with local digital regulations.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">2. Intellectual Property</h4>
-                    <p>Cloud Studio was <strong>Originally Created By Ghulam Muhammad</strong>. All rights regarding the original interface design, layout, custom canvas algorithms, and brand elements are retained.</p>
-                    <h4 class="font-bold text-amber-900 text-sm mt-3">3. Disclaimer of Warranties</h4>
-                    <p>The service is provided "as is" without warranties of any kind. We are not liable for any data loss occurring on your local device.</p>
+                    <p>Welcome to Cloud Studio! By accessing our utilities, you agree to these Terms of Service.</p>
+                    <h4 class="font-bold text-amber-900 text-sm mt-3">1. Intellectual Property</h4>
+                    <p>Cloud Studio was <strong>Originally Created By Ghulam Muhammad</strong>. All rights regarding the original interface design and algorithms are retained.</p>
                 `
             },
             about: {
                 title: "About Us",
                 content: `
-                    <p><strong>Cloud Studio</strong> is an ethereal suite of browser-based digital utilities designed to streamline everyday media editing tasks without sacrificing speed or privacy.</p>
-                    <p class="mt-2">Originally Created By <strong>Ghulam Muhammad</strong>, Cloud Studio brings together high-performance HTML5 Canvas APIs, Web Audio APIs, and vector generation engines in a clean, heavenly white-and-gold design interface.</p>
-                    <p class="mt-2">Our mission is to empower content creators, designers, and web users worldwide with fast, free, and completely private web tools.</p>
+                    <p><strong>Cloud Studio</strong> is an ethereal suite of browser-based digital utilities designed to streamline media tasks without sacrificing privacy.</p>
+                    <p class="mt-2">Originally Created By <strong>Ghulam Muhammad</strong>.</p>
                 `
             },
             contact: {
                 title: "Contact Us",
                 content: `
-                    <p>If you have any questions, feedback, or support inquiries regarding Cloud Studio, please reach out through our official channels:</p>
+                    <p>For feedback or inquiries:</p>
                     <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 mt-3 space-y-2">
                         <p><strong>Creator:</strong> Ghulam Muhammad</p>
                         <p><strong>Email:</strong> GMGAMERZ10@GMAIL.COM</p>
-                        <p><strong>Response Time:</strong> Within 24-48 hours</p>
                     </div>
                 `
             }
         };
 
-        // DAY & NIGHT MODE TOGGLE LOGIC
+        // Theme Persistence on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('cloud_studio_theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun text-yellow-400';
+                document.getElementById('theme-text').innerText = 'Day Mode';
+            }
+            renderQrCode();
+        });
+
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('theme-icon');
@@ -939,9 +913,11 @@
             if (isDark) {
                 icon.className = 'fa-solid fa-sun text-yellow-400';
                 text.innerText = 'Day Mode';
+                localStorage.setItem('cloud_studio_theme', 'dark');
             } else {
                 icon.className = 'fa-solid fa-moon text-amber-600';
                 text.innerText = 'Night Mode';
+                localStorage.setItem('cloud_studio_theme', 'light');
             }
         }
 
@@ -957,7 +933,565 @@
             document.getElementById('policy-modal').classList.add('hidden');
         }
 
-        // HEAVENLY WISDOM & PICKUP LINES DATA (100+ UNIQUE LINES PER TOOL)
+        // Drag & Drop Setup
+        function setupDropzone(dropzoneId, inputId, callback) {
+            const dz = document.getElementById(dropzoneId);
+            if (!dz) return;
+            dz.addEventListener('dragover', (e) => { e.preventDefault(); dz.classList.add('dragover'); });
+            dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+            dz.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dz.classList.remove('dragover');
+                if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                    callback(e.dataTransfer.files);
+                }
+            });
+        }
+
+        setupDropzone('heic-dropzone', 'heic-input', handleHeicFiles);
+        setupDropzone('comp-dropzone', 'comp-input', (files) => loadCompressorImage(files[0]));
+        setupDropzone('enh-dropzone', 'enh-input', (files) => loadEnhanceImage(files[0]));
+        setupDropzone('video-dropzone', 'video-input', (files) => loadVideoSource(files[0]));
+
+        function switchTool(toolId) {
+            document.querySelectorAll('.tool-view').forEach(view => view.classList.add('hidden'));
+            document.querySelectorAll('.heaven-tab').forEach(btn => btn.classList.remove('active'));
+
+            const targetView = document.getElementById('tool-' + toolId);
+            const targetBtn = document.getElementById('nav-' + toolId);
+            
+            if (targetView) targetView.classList.remove('hidden');
+            if (targetBtn) targetBtn.classList.add('active');
+
+            if(toolId === 'qrcode') {
+                renderQrCode();
+            }
+        }
+
+        // 1. HEIC CONVERTER LOGIC
+        let heicSelectedFiles = [];
+
+        function handleHeicFiles(files) {
+            if(!files || files.length === 0) return;
+            heicSelectedFiles = Array.from(files);
+            
+            document.getElementById('btn-convert-heic').disabled = false;
+            const resultsContainer = document.getElementById('heic-results');
+            resultsContainer.innerHTML = `<div class="text-xs font-bold text-amber-900 uppercase tracking-wider mb-2">Queue (${heicSelectedFiles.length} Celestial File/s)</div>`;
+
+            heicSelectedFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'bg-amber-50/60 border border-amber-300/40 rounded-xl p-4 flex items-center justify-between text-xs shadow-sm';
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3 truncate">
+                        <i class="fa-solid fa-file-image text-amber-600"></i>
+                        <span class="font-mono text-gray-900 truncate font-semibold">${file.name}</span>
+                        <span class="text-amber-800 font-mono">(${formatBytes(file.size)})</span>
+                    </div>
+                    <span id="heic-status-${index}" class="text-amber-800 font-mono font-bold">Ready</span>
+                `;
+                resultsContainer.appendChild(item);
+            });
+        }
+
+        async function processHeicConversion() {
+            const targetFormat = document.getElementById('heic-target-format').value;
+            const quality = parseFloat(document.getElementById('heic-quality').value);
+            let ext = targetFormat === 'image/png' ? 'png' : (targetFormat === 'image/webp' ? 'webp' : 'jpg');
+
+            for (let i = 0; i < heicSelectedFiles.length; i++) {
+                const file = heicSelectedFiles[i];
+                const statusEl = document.getElementById(`heic-status-${i}`);
+                statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-amber-600 mr-1.5"></i> Transmuting...`;
+
+                try {
+                    let blob;
+                    const cleanName = file.name.replace(/\.[^/.]+$/, "");
+                    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+                        blob = await heic2any({ blob: file, toType: targetFormat, quality: quality });
+                        if (Array.isArray(blob)) blob = blob[0];
+                    } else {
+                        blob = await convertStandardImage(file, targetFormat, quality);
+                    }
+
+                    const downloadUrl = URL.createObjectURL(blob);
+                    const newName = cleanName + '.' + ext;
+
+                    statusEl.innerHTML = `
+                        <a href="${downloadUrl}" download="${newName}" class="px-3.5 py-1.5 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-all flex items-center space-x-1 shadow-sm">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Save ${ext.toUpperCase()}</span>
+                        </a>
+                    `;
+                } catch (err) {
+                    statusEl.innerHTML = `<span class="text-rose-500 font-mono">Error</span>`;
+                }
+            }
+        }
+
+        function convertStandardImage(file, format, quality) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    canvas.toBlob((blob) => resolve(blob), format, quality);
+                };
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        // 2. COMPRESSOR LOGIC
+        let currentCompressorImg = null;
+        let compressorOriginalFile = null;
+
+        function loadCompressorImage(file) {
+            if (!file) return;
+            compressorOriginalFile = file;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    currentCompressorImg = img;
+                    document.getElementById('comp-width').value = img.width;
+                    document.getElementById('comp-height').value = img.height;
+                    document.getElementById('size-orig').innerText = formatBytes(file.size);
+
+                    const previewImg = document.getElementById('comp-preview-img');
+                    previewImg.src = e.target.result;
+                    previewImg.classList.remove('hidden');
+                    document.getElementById('comp-placeholder').classList.add('hidden');
+                    document.getElementById('btn-download-comp').disabled = false;
+
+                    updateCompressorPreview();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleDimensionChange(changed) {
+            if (!currentCompressorImg) return;
+            const aspectLocked = document.getElementById('comp-aspect').checked;
+            const wInput = document.getElementById('comp-width');
+            const hInput = document.getElementById('comp-height');
+
+            if (aspectLocked) {
+                const ratio = currentCompressorImg.width / currentCompressorImg.height;
+                if (changed === 'width') {
+                    hInput.value = Math.round(wInput.value / ratio);
+                } else {
+                    wInput.value = Math.round(hInput.value * ratio);
+                }
+            }
+            updateCompressorPreview();
+        }
+
+        function resetCompressorDimensions() {
+            if (!currentCompressorImg) return;
+            document.getElementById('comp-width').value = currentCompressorImg.width;
+            document.getElementById('comp-height').value = currentCompressorImg.height;
+            updateCompressorPreview();
+        }
+
+        function updateCompressorPreview() {
+            if (!currentCompressorImg) return;
+            const quality = parseInt(document.getElementById('comp-quality').value) / 100;
+            document.getElementById('comp-qual-display').innerText = Math.round(quality * 100) + '%';
+
+            const targetW = parseInt(document.getElementById('comp-width').value) || currentCompressorImg.width;
+            const targetH = parseInt(document.getElementById('comp-height').value) || currentCompressorImg.height;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = targetW;
+            canvas.height = targetH;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(currentCompressorImg, 0, 0, targetW, targetH);
+
+            const format = compressorOriginalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+            canvas.toBlob((blob) => {
+                if (!blob) return;
+                document.getElementById('size-new').innerText = formatBytes(blob.size);
+            }, format, quality);
+        }
+
+        function downloadCompressedImage() {
+            if (!currentCompressorImg) return;
+            const quality = parseInt(document.getElementById('comp-quality').value) / 100;
+            const targetW = parseInt(document.getElementById('comp-width').value) || currentCompressorImg.width;
+            const targetH = parseInt(document.getElementById('comp-height').value) || currentCompressorImg.height;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = targetW;
+            canvas.height = targetH;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(currentCompressorImg, 0, 0, targetW, targetH);
+
+            const format = compressorOriginalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+            const ext = format === 'image/png' ? 'png' : 'jpg';
+
+            canvas.toBlob((blob) => {
+                const link = document.createElement('a');
+                link.download = `feathered-image.${ext}`;
+                link.href = URL.createObjectURL(blob);
+                link.click();
+            }, format, quality);
+        }
+
+        // 3. QUALITY ENHANCER
+        let currentEnhanceImg = null;
+        let upscaleScale = 1;
+
+        function loadEnhanceImage(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    currentEnhanceImg = img;
+                    document.getElementById('enh-placeholder').classList.add('hidden');
+                    document.getElementById('enh-canvas').classList.remove('hidden');
+                    document.getElementById('btn-download-enh').disabled = false;
+                    applyEnhancements();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function setUpscaleScale(scale) {
+            upscaleScale = scale;
+            [1, 2, 4].forEach(s => {
+                const btn = document.getElementById(`scale-${s}`);
+                if (s === scale) {
+                    btn.className = 'py-2 rounded-xl text-xs font-bold border border-amber-400 bg-amber-200 text-amber-950 shadow-sm';
+                } else {
+                    btn.className = 'py-2 rounded-xl text-xs font-bold border border-amber-300/60 bg-white text-amber-900';
+                }
+            });
+            applyEnhancements();
+        }
+
+        function resetEnhancements() {
+            document.getElementById('enh-sharp').value = 0;
+            document.getElementById('enh-contrast').value = 100;
+            document.getElementById('enh-bright').value = 100;
+            document.getElementById('enh-saturate').value = 100;
+            setUpscaleScale(1);
+        }
+
+        function applyEnhancements() {
+            if (!currentEnhanceImg) return;
+            const sharpVal = parseInt(document.getElementById('enh-sharp').value);
+            const contrastVal = parseInt(document.getElementById('enh-contrast').value);
+            const brightVal = parseInt(document.getElementById('enh-bright').value);
+            const saturateVal = parseInt(document.getElementById('enh-saturate').value);
+
+            document.getElementById('val-sharp').innerText = sharpVal + '%';
+            document.getElementById('val-contrast').innerText = contrastVal + '%';
+            document.getElementById('val-bright').innerText = brightVal + '%';
+            document.getElementById('val-saturate').innerText = saturateVal + '%';
+
+            const canvas = document.getElementById('enh-canvas');
+            const ctx = canvas.getContext('2d');
+            const targetWidth = currentEnhanceImg.width * upscaleScale;
+            const targetHeight = currentEnhanceImg.height * upscaleScale;
+
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+            document.getElementById('enh-dims-display').innerText = `${targetWidth} x ${targetHeight} px`;
+
+            ctx.filter = `contrast(${contrastVal}%) brightness(${brightVal}%) saturate(${saturateVal}%)`;
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(currentEnhanceImg, 0, 0, targetWidth, targetHeight);
+
+            if (sharpVal > 0) {
+                const imgData = ctx.getImageData(0, 0, targetWidth, targetHeight);
+                const sharpened = sharpenImageData(imgData, sharpVal / 100);
+                ctx.putImageData(sharpened, 0, 0);
+            }
+        }
+
+        function sharpenImageData(imageData, factor) {
+            const w = imageData.width;
+            const h = imageData.height;
+            const src = imageData.data;
+            const output = new ImageData(w, h);
+            const dst = output.data;
+            const k = [0, -1 * factor, 0, -1 * factor, 1 + 4 * factor, -1 * factor, 0, -1 * factor, 0];
+
+            for (let y = 1; y < h - 1; y++) {
+                for (let x = 1; x < w - 1; x++) {
+                    const sy = y * w + x;
+                    const dstIdx = sy * 4;
+                    for (let c = 0; c < 3; c++) {
+                        let val = 0;
+                        val += src[((y - 1) * w + (x)) * 4 + c] * k[1];
+                        val += src[((y) * w + (x - 1)) * 4 + c] * k[3];
+                        val += src[((y) * w + (x)) * 4 + c] * k[4];
+                        val += src[((y) * w + (x + 1)) * 4 + c] * k[5];
+                        val += src[((y + 1) * w + (x)) * 4 + c] * k[7];
+                        dst[dstIdx + c] = Math.min(255, Math.max(0, val));
+                    }
+                    dst[dstIdx + 3] = src[dstIdx + 3];
+                }
+            }
+            return output;
+        }
+
+        function downloadEnhancedImage() {
+            const canvas = document.getElementById('enh-canvas');
+            if (!canvas) return;
+            const link = document.createElement('a');
+            link.download = `enhanced-masterpiece.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // 4. VIDEO TO AUDIO EXTRACTOR
+        let currentVideoFile = null;
+        let videoMode = 'wav';
+
+        function loadVideoSource(file) {
+            if(!file) return;
+            currentVideoFile = file;
+            const player = document.getElementById('video-player');
+            player.src = URL.createObjectURL(file);
+            player.classList.remove('hidden');
+            document.getElementById('video-placeholder').classList.add('hidden');
+            document.getElementById('btn-process-video').disabled = false;
+        }
+
+        function setVideoMode(mode) {
+            videoMode = mode;
+            const wavBtn = document.getElementById('mode-wav');
+            const mp4Btn = document.getElementById('mode-mp4');
+            if(mode === 'wav') {
+                wavBtn.className = 'px-5 py-4 rounded-xl border border-amber-400 text-amber-950 bg-amber-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 shadow-sm';
+                mp4Btn.className = 'px-5 py-4 rounded-xl border border-amber-300/40 text-amber-800 hover:border-amber-400 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 bg-white';
+            } else {
+                mp4Btn.className = 'px-5 py-4 rounded-xl border border-amber-400 text-amber-950 bg-amber-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 shadow-sm';
+                wavBtn.className = 'px-5 py-4 rounded-xl border border-amber-300/40 text-amber-800 hover:border-amber-400 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 bg-white';
+            }
+        }
+
+        async function processVideoExtraction() {
+            if(!currentVideoFile) return;
+            const progressBar = document.getElementById('video-progress-bar');
+            const progressPercent = document.getElementById('video-progress-percent');
+            const progressBox = document.getElementById('video-progress-container');
+            const statusText = document.getElementById('video-status-text');
+            const outputArea = document.getElementById('video-output-area');
+
+            progressBox.classList.remove('hidden');
+            outputArea.classList.add('hidden');
+
+            if (videoMode === 'mp4') {
+                let progress = 0;
+                statusText.innerText = "Processing Video Stream...";
+                const interval = setInterval(() => {
+                    progress += 20;
+                    progressBar.style.width = progress + '%';
+                    progressPercent.innerText = progress + '%';
+                    if(progress >= 100) {
+                        clearInterval(interval);
+                        progressBox.classList.add('hidden');
+                        outputArea.classList.remove('hidden');
+                        const outputBlob = new Blob([currentVideoFile], { type: 'video/mp4' });
+                        const downloadBtn = document.getElementById('video-download-btn');
+                        downloadBtn.href = URL.createObjectURL(outputBlob);
+                        downloadBtn.download = `extracted-stream.mp4`;
+                        document.getElementById('video-output-filename').innerText = `extracted-stream.mp4`;
+                    }
+                }, 150);
+                return;
+            }
+
+            try {
+                statusText.innerText = "Reading Video Binary...";
+                progressBar.style.width = "20%";
+                progressPercent.innerText = "20%";
+
+                const arrayBuffer = await currentVideoFile.arrayBuffer();
+                statusText.innerText = "Decoding Audio Tracks...";
+                progressBar.style.width = "50%";
+                progressPercent.innerText = "50%";
+
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+                statusText.innerText = "Encoding WAV File...";
+                progressBar.style.width = "85%";
+                progressPercent.innerText = "85%";
+
+                const wavBlob = audioBufferToWavBlob(audioBuffer);
+
+                setTimeout(() => {
+                    progressBar.style.width = "100%";
+                    progressPercent.innerText = "100%";
+                    progressBox.classList.add('hidden');
+                    outputArea.classList.remove('hidden');
+
+                    const downloadBtn = document.getElementById('video-download-btn');
+                    downloadBtn.href = URL.createObjectURL(wavBlob);
+                    downloadBtn.download = `extracted-audio.wav`;
+                    document.getElementById('video-output-filename').innerText = `extracted-audio.wav`;
+                }, 300);
+            } catch (err) {
+                alert("Audio extraction failed. Ensure the file contains a valid audio track.");
+                progressBox.classList.add('hidden');
+            }
+        }
+
+        function audioBufferToWavBlob(buffer) {
+            const numOfChan = buffer.numberOfChannels;
+            const length = buffer.length * numOfChan * 2 + 44;
+            const out = new DataView(new ArrayBuffer(length));
+            let channels = [];
+            let sampleRate = buffer.sampleRate;
+            let offset = 0;
+            let pos = 0;
+
+            function writeString(str) {
+                for (let i = 0; i < str.length; i++) {
+                    out.setUint8(pos++, str.charCodeAt(i));
+                }
+            }
+
+            writeString('RIFF');
+            out.setUint32(pos, length - 8, true); pos += 4;
+            writeString('WAVE');
+            writeString('fmt ');
+            out.setUint32(pos, 16, true); pos += 4;
+            out.setUint16(pos, 1, true); pos += 2;
+            out.setUint16(pos, numOfChan, true); pos += 2;
+            out.setUint32(pos, sampleRate, true); pos += 4;
+            out.setUint32(pos, sampleRate * 2 * numOfChan, true); pos += 4;
+            out.setUint16(pos, numOfChan * 2, true); pos += 2;
+            out.setUint16(pos, 16, true); pos += 2;
+            writeString('data');
+            out.setUint32(pos, length - pos - 4, true); pos += 4;
+
+            for (let i = 0; i < buffer.numberOfChannels; i++) {
+                channels.push(buffer.getChannelData(i));
+            }
+
+            while (offset < buffer.length) {
+                for (let i = 0; i < numOfChan; i++) {
+                    let sample = Math.max(-1, Math.min(1, channels[i][offset]));
+                    sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767) | 0;
+                    out.setInt16(pos, sample, true);
+                    pos += 2;
+                }
+                offset++;
+            }
+            return new Blob([out.buffer], { type: 'audio/wav' });
+        }
+
+        // 5. QR CODE GENERATOR
+        let qrLogoImg = null;
+
+        function setQrPreset(darkHex, lightHex) {
+            document.getElementById('qr-color-dark').value = darkHex;
+            document.getElementById('qr-color-light').value = lightHex;
+            document.getElementById('qr-dark-hex').innerText = darkHex;
+            document.getElementById('qr-light-hex').innerText = lightHex;
+            renderQrCode();
+        }
+
+        function handleQrLogoUpload(file) {
+            if (!file) {
+                qrLogoImg = null;
+                renderQrCode();
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    qrLogoImg = img;
+                    renderQrCode();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function renderQrCode() {
+            const payload = document.getElementById('qr-text').value || 'https://cloudstudio.app';
+            const darkColor = document.getElementById('qr-color-dark').value;
+            const lightColor = document.getElementById('qr-color-light').value;
+
+            document.getElementById('qr-dark-hex').innerText = darkColor;
+            document.getElementById('qr-light-hex').innerText = lightColor;
+
+            const rawDiv = document.getElementById('qrcode-raw');
+            rawDiv.innerHTML = '';
+
+            new QRCode(rawDiv, {
+                text: payload,
+                width: 240,
+                height: 240,
+                colorDark: darkColor,
+                colorLight: lightColor,
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            setTimeout(() => {
+                const qrImg = rawDiv.querySelector('img');
+                if (!qrImg) return;
+                const canvas = document.getElementById('qr-canvas');
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(qrImg, 0, 0, 240, 240);
+
+                if (qrLogoImg) {
+                    const logoSize = 48;
+                    const logoX = (240 - logoSize) / 2;
+                    const logoY = (240 - logoSize) / 2;
+
+                    ctx.fillStyle = lightColor;
+                    ctx.beginPath();
+                    ctx.arc(120, 120, logoSize / 2 + 4, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.strokeStyle = darkColor;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(120, 120, logoSize / 2, 0, Math.PI * 2);
+                    ctx.clip();
+                    ctx.drawImage(qrLogoImg, logoX, logoY, logoSize, logoSize);
+                    ctx.restore();
+                }
+            }, 50);
+        }
+
+        function downloadQrCode(format) {
+            const canvas = document.getElementById('qr-canvas');
+            const link = document.createElement('a');
+            link.download = `celestial-qrcode.${format}`;
+            link.href = canvas.toDataURL(`image/${format}`);
+            link.click();
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // FULL 500+ CELESTIAL WISDOM & PICKUP LINES ARRAY (100+ PER TOOL)
         const celestialWisdom = {
             heic: [
                 `"Are you a HEIC photo? Because you're so heavenly high-res, standard mortals can't even handle your raw format."`,
@@ -1412,7 +1946,7 @@
                 `"You're like a high-speed portal—one scan and we're instantly connected."`,
                 `"Are you a vector export button? Because downloading your memory is priceless."`,
                 `"My life's app scanned your code and unlocked an exclusive feature."`,
-                `"Is your background light palette golden? Because you glow like dawn."`,
+                `"Is your background palette white and gold? Because you glow like dawn."`,
                 `"You decoded all my hidden feelings without me saying a word."`,
                 `"Are you a dynamic QR link? Because you lead to endless fun possibilities."`,
                 `"My camera viewfinder holds you right in the sweet spot."`,
@@ -1479,496 +2013,6 @@
                 textEl.innerText = randomLine;
             }
         }
-
-        // Switch Active Tool Tabs
-        function switchTool(toolId) {
-            document.querySelectorAll('.tool-view').forEach(view => view.classList.add('hidden'));
-            document.querySelectorAll('.heaven-tab').forEach(btn => btn.classList.remove('active'));
-
-            const targetView = document.getElementById('tool-' + toolId);
-            const targetBtn = document.getElementById('nav-' + toolId);
-            
-            if (targetView) targetView.classList.remove('hidden');
-            if (targetBtn) targetBtn.classList.add('active');
-
-            if(toolId === 'qrcode') {
-                renderQrCode();
-            }
-        }
-
-        // Drag and drop setup
-        document.querySelectorAll('.heaven-dropzone').forEach(zone => {
-            zone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                zone.classList.add('dragover');
-            });
-            zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-            zone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                zone.classList.remove('dragover');
-            });
-        });
-
-        // 1. HEIC CONVERTER LOGIC
-        let heicSelectedFiles = [];
-
-        function handleHeicFiles(files) {
-            if(!files || files.length === 0) return;
-            heicSelectedFiles = Array.from(files);
-            
-            document.getElementById('btn-convert-heic').disabled = false;
-            const resultsContainer = document.getElementById('heic-results');
-            resultsContainer.innerHTML = `<div class="text-xs font-bold text-emerald-300 uppercase tracking-wider mb-2">Queue (${heicSelectedFiles.length} Celestial File/s)</div>`;
-
-            heicSelectedFiles.forEach((file, index) => {
-                const item = document.createElement('div');
-                item.className = 'bg-white/[0.02] border border-white/10 rounded-xl p-4 flex items-center justify-between text-xs';
-                item.innerHTML = `
-                    <div class="flex items-center space-x-3 truncate">
-                        <i class="fa-solid fa-cloud-arrow-up text-cloud-lavender"></i>
-                        <span class="font-mono text-white truncate">${file.name}</span>
-                        <span class="text-cloud-textMuted font-mono">(${formatBytes(file.size)})</span>
-                    </div>
-                    <span id="heic-status-${index}" class="text-cloud-textMuted font-mono">Ready for Transmutation</span>
-                `;
-                resultsContainer.appendChild(item);
-            });
-        }
-
-        async function processHeicConversion() {
-            const targetFormat = document.getElementById('heic-target-format').value;
-            const quality = parseFloat(document.getElementById('heic-quality').value);
-            let ext = targetFormat === 'image/png' ? 'png' : (targetFormat === 'image/webp' ? 'webp' : 'jpg');
-
-            for (let i = 0; i < heicSelectedFiles.length; i++) {
-                const file = heicSelectedFiles[i];
-                const statusEl = document.getElementById(`heic-status-${i}`);
-                statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-emerald-300 mr-1.5"></i> Transmuting...`;
-
-                try {
-                    let blob;
-                    if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
-                        blob = await heic2any({ blob: file, toType: targetFormat, quality: quality });
-                        if (Array.isArray(blob)) blob = blob[0];
-                    } else {
-                        blob = await convertStandardImage(file, targetFormat, quality);
-                    }
-
-                    const downloadUrl = URL.createObjectURL(blob);
-                    const newName = file.name.substring(0, file.name.lastIndexOf('.')) + '.' + ext;
-
-                    statusEl.innerHTML = `
-                        <a href="${downloadUrl}" download="${newName}" class="px-3 py-1.5 bg-emerald-400 text-slate-950 font-bold rounded-lg hover:bg-emerald-300 transition-all flex items-center space-x-1">
-                            <i class="fa-solid fa-download"></i>
-                            <span>Save ${ext.toUpperCase()}</span>
-                        </a>
-                    `;
-                } catch (err) {
-                    statusEl.innerHTML = `<span class="text-rose-400 font-mono">Transmutation Error</span>`;
-                }
-            }
-        }
-
-        function convertStandardImage(file, format, quality) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    canvas.toBlob((blob) => resolve(blob), format, quality);
-                };
-                img.onerror = reject;
-                img.src = URL.createObjectURL(file);
-            });
-        }
-
-        // 2. IMAGE COMPRESSOR & RESIZER LOGIC
-        let currentCompressorImg = null;
-        let compressorOriginalFile = null;
-
-        function loadCompressorImage(file) {
-            if (!file) return;
-            compressorOriginalFile = file;
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    currentCompressorImg = img;
-                    document.getElementById('comp-width').value = img.width;
-                    document.getElementById('comp-height').value = img.height;
-                    document.getElementById('size-orig').innerText = formatBytes(file.size);
-
-                    const previewImg = document.getElementById('comp-preview-img');
-                    previewImg.src = e.target.result;
-                    previewImg.classList.remove('hidden');
-                    document.getElementById('comp-placeholder').classList.add('hidden');
-                    document.getElementById('btn-download-comp').disabled = false;
-
-                    updateCompressorPreview();
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function handleDimensionChange(changed) {
-            if (!currentCompressorImg) return;
-            const aspectLocked = document.getElementById('comp-aspect').checked;
-            const wInput = document.getElementById('comp-width');
-            const hInput = document.getElementById('comp-height');
-
-            if (aspectLocked) {
-                const ratio = currentCompressorImg.width / currentCompressorImg.height;
-                if (changed === 'width') {
-                    hInput.value = Math.round(wInput.value / ratio);
-                } else {
-                    wInput.value = Math.round(hInput.value * ratio);
-                }
-            }
-            updateCompressorPreview();
-        }
-
-        function resetCompressorDimensions() {
-            if (!currentCompressorImg) return;
-            document.getElementById('comp-width').value = currentCompressorImg.width;
-            document.getElementById('comp-height').value = currentCompressorImg.height;
-            updateCompressorPreview();
-        }
-
-        function updateCompressorPreview() {
-            if (!currentCompressorImg) return;
-
-            const quality = parseInt(document.getElementById('comp-quality').value) / 100;
-            document.getElementById('comp-qual-display').innerText = Math.round(quality * 100) + '%';
-
-            const targetW = parseInt(document.getElementById('comp-width').value) || currentCompressorImg.width;
-            const targetH = parseInt(document.getElementById('comp-height').value) || currentCompressorImg.height;
-
-            const canvas = document.createElement('canvas');
-            canvas.width = targetW;
-            canvas.height = targetH;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(currentCompressorImg, 0, 0, targetW, targetH);
-
-            const format = compressorOriginalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
-            canvas.toBlob((blob) => {
-                if (!blob) return;
-                document.getElementById('size-new').innerText = formatBytes(blob.size);
-            }, format, quality);
-        }
-
-        function downloadCompressedImage() {
-            if (!currentCompressorImg) return;
-            const quality = parseInt(document.getElementById('comp-quality').value) / 100;
-            const targetW = parseInt(document.getElementById('comp-width').value) || currentCompressorImg.width;
-            const targetH = parseInt(document.getElementById('comp-height').value) || currentCompressorImg.height;
-
-            const canvas = document.createElement('canvas');
-            canvas.width = targetW;
-            canvas.height = targetH;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(currentCompressorImg, 0, 0, targetW, targetH);
-
-            const format = compressorOriginalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
-            const ext = format === 'image/png' ? 'png' : 'jpg';
-
-            canvas.toBlob((blob) => {
-                const link = document.createElement('a');
-                link.download = `feathered-image.${ext}`;
-                link.href = URL.createObjectURL(blob);
-                link.click();
-            }, format, quality);
-        }
-
-        // 5. IMAGE ENHANCER LOGIC
-        let currentEnhanceImg = null;
-        let upscaleScale = 1;
-
-        function loadEnhanceImage(file) {
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    currentEnhanceImg = img;
-                    document.getElementById('enh-placeholder').classList.add('hidden');
-                    document.getElementById('enh-canvas').classList.remove('hidden');
-                    document.getElementById('btn-download-enh').disabled = false;
-                    applyEnhancements();
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function setUpscaleScale(scale) {
-            upscaleScale = scale;
-            [1, 2, 4].forEach(s => {
-                const btn = document.getElementById(`scale-${s}`);
-                if (s === scale) {
-                    btn.className = 'py-2 rounded-xl text-xs font-bold border border-amber-400 bg-amber-200 text-amber-950';
-                } else {
-                    btn.className = 'py-2 rounded-xl text-xs font-bold border border-amber-300/60 bg-white text-amber-900';
-                }
-            });
-            applyEnhancements();
-        }
-
-        function resetEnhancements() {
-            document.getElementById('enh-sharp').value = 0;
-            document.getElementById('enh-contrast').value = 100;
-            document.getElementById('enh-bright').value = 100;
-            document.getElementById('enh-saturate').value = 100;
-            setUpscaleScale(1);
-        }
-
-        function applyEnhancements() {
-            if (!currentEnhanceImg) return;
-
-            const sharpVal = parseInt(document.getElementById('enh-sharp').value);
-            const contrastVal = parseInt(document.getElementById('enh-contrast').value);
-            const brightVal = parseInt(document.getElementById('enh-bright').value);
-            const saturateVal = parseInt(document.getElementById('enh-saturate').value);
-
-            document.getElementById('val-sharp').innerText = sharpVal + '%';
-            document.getElementById('val-contrast').innerText = contrastVal + '%';
-            document.getElementById('val-bright').innerText = brightVal + '%';
-            document.getElementById('val-saturate').innerText = saturateVal + '%';
-
-            const canvas = document.getElementById('enh-canvas');
-            const ctx = canvas.getContext('2d');
-
-            const targetWidth = currentEnhanceImg.width * upscaleScale;
-            const targetHeight = currentEnhanceImg.height * upscaleScale;
-
-            canvas.width = targetWidth;
-            canvas.height = targetHeight;
-            document.getElementById('enh-dims-display').innerText = `${targetWidth} x ${targetHeight} px`;
-
-            ctx.filter = `contrast(${contrastVal}%) brightness(${brightVal}%) saturate(${saturateVal}%)`;
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            ctx.drawImage(currentEnhanceImg, 0, 0, targetWidth, targetHeight);
-
-            // Apply Sharpening Convolution Filter if > 0
-            if (sharpVal > 0) {
-                const imgData = ctx.getImageData(0, 0, targetWidth, targetHeight);
-                const sharpened = sharpenImageData(imgData, sharpVal / 100);
-                ctx.putImageData(sharpened, 0, 0);
-            }
-        }
-
-        function sharpenImageData(imageData, factor) {
-            const w = imageData.width;
-            const h = imageData.height;
-            const src = imageData.data;
-            const output = new ImageData(w, h);
-            const dst = output.data;
-
-            // Simple 3x3 sharpen kernel
-            const k = [
-                0, -1 * factor, 0,
-                -1 * factor, 1 + 4 * factor, -1 * factor,
-                0, -1 * factor, 0
-            ];
-
-            for (let y = 1; y < h - 1; y++) {
-                for (let x = 1; x < w - 1; x++) {
-                    const sy = y * w + x;
-                    const dstIdx = sy * 4;
-
-                    for (let c = 0; c < 3; c++) {
-                        let val = 0;
-                        val += src[((y - 1) * w + (x)) * 4 + c] * k[1];
-                        val += src[((y) * w + (x - 1)) * 4 + c] * k[3];
-                        val += src[((y) * w + (x)) * 4 + c] * k[4];
-                        val += src[((y) * w + (x + 1)) * 4 + c] * k[5];
-                        val += src[((y + 1) * w + (x)) * 4 + c] * k[7];
-
-                        dst[dstIdx + c] = Math.min(255, Math.max(0, val));
-                    }
-                    dst[dstIdx + 3] = src[dstIdx + 3]; // Alpha
-                }
-            }
-            return output;
-        }
-
-        function downloadEnhancedImage() {
-            const canvas = document.getElementById('enh-canvas');
-            if (!canvas) return;
-            const link = document.createElement('a');
-            link.download = `enhanced-masterpiece.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
-
-        // 3. VIDEO EXTRACTOR LOGIC
-        let currentVideoFile = null;
-        let videoMode = 'mp3';
-
-        function loadVideoSource(file) {
-            if(!file) return;
-            currentVideoFile = file;
-
-            const player = document.getElementById('video-player');
-            player.src = URL.createObjectURL(file);
-            player.classList.remove('hidden');
-            document.getElementById('video-placeholder').classList.add('hidden');
-            document.getElementById('btn-process-video').disabled = false;
-        }
-
-        function setVideoMode(mode) {
-            videoMode = mode;
-            const mp3Btn = document.getElementById('mode-mp3');
-            const mp4Btn = document.getElementById('mode-mp4');
-
-            if(mode === 'mp3') {
-                mp3Btn.className = 'px-5 py-4 rounded-xl border border-purple-400/60 text-purple-200 bg-purple-500/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-                mp4Btn.className = 'px-5 py-4 rounded-xl border border-white/10 text-cloud-textMuted hover:border-white/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-            } else {
-                mp4Btn.className = 'px-5 py-4 rounded-xl border border-purple-400/60 text-purple-200 bg-purple-500/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-                mp3Btn.className = 'px-5 py-4 rounded-xl border border-white/10 text-cloud-textMuted hover:border-white/20 text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2';
-            }
-        }
-
-        async function processVideoExtraction() {
-            if(!currentVideoFile) return;
-
-            const progressBar = document.getElementById('video-progress-bar');
-            const progressPercent = document.getElementById('video-progress-percent');
-            const progressBox = document.getElementById('video-progress-container');
-            const outputArea = document.getElementById('video-output-area');
-
-            progressBox.classList.remove('hidden');
-            outputArea.classList.add('hidden');
-
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 10;
-                progressBar.style.width = progress + '%';
-                progressPercent.innerText = progress + '%';
-
-                if(progress >= 100) {
-                    clearInterval(interval);
-                    progressBox.classList.add('hidden');
-                    outputArea.classList.remove('hidden');
-
-                    const ext = videoMode === 'mp3' ? 'mp3' : 'mp4';
-                    const outputBlob = new Blob([currentVideoFile], { type: videoMode === 'mp3' ? 'audio/mp3' : 'video/mp4' });
-                    const downloadBtn = document.getElementById('video-download-btn');
-                    downloadBtn.href = URL.createObjectURL(outputBlob);
-                    downloadBtn.download = `astral-stream.${ext}`;
-                    document.getElementById('video-output-filename').innerText = `astral-stream.${ext}`;
-                }
-            }, 90);
-        }
-
-        // 4. CUSTOM QR CODE GENERATOR LOGIC
-        let qrLogoImg = null;
-
-        function setQrPreset(darkHex, lightHex) {
-            document.getElementById('qr-color-dark').value = darkHex;
-            document.getElementById('qr-color-light').value = lightHex;
-            document.getElementById('qr-dark-hex').innerText = darkHex;
-            document.getElementById('qr-light-hex').innerText = lightHex;
-            renderQrCode();
-        }
-
-        function handleQrLogoUpload(file) {
-            if (!file) {
-                qrLogoImg = null;
-                renderQrCode();
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    qrLogoImg = img;
-                    renderQrCode();
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function renderQrCode() {
-            const payload = document.getElementById('qr-text').value || 'https://cloudstudio.app';
-            const darkColor = document.getElementById('qr-color-dark').value;
-            const lightColor = document.getElementById('qr-color-light').value;
-
-            document.getElementById('qr-dark-hex').innerText = darkColor;
-            document.getElementById('qr-light-hex').innerText = lightColor;
-
-            const rawDiv = document.getElementById('qrcode-raw');
-            rawDiv.innerHTML = '';
-
-            new QRCode(rawDiv, {
-                text: payload,
-                width: 240,
-                height: 240,
-                colorDark: darkColor,
-                colorLight: lightColor,
-                correctLevel: QRCode.CorrectLevel.H
-            });
-
-            setTimeout(() => {
-                const qrImg = rawDiv.querySelector('img');
-                if (!qrImg) return;
-
-                const canvas = document.getElementById('qr-canvas');
-                const ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                ctx.drawImage(qrImg, 0, 0, 240, 240);
-
-                if (qrLogoImg) {
-                    const logoSize = 48;
-                    const logoX = (240 - logoSize) / 2;
-                    const logoY = (240 - logoSize) / 2;
-
-                    ctx.fillStyle = lightColor;
-                    ctx.beginPath();
-                    ctx.arc(120, 120, logoSize / 2 + 4, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    ctx.strokeStyle = darkColor;
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.arc(120, 120, logoSize / 2, 0, Math.PI * 2);
-                    ctx.clip();
-                    ctx.drawImage(qrLogoImg, logoX, logoY, logoSize, logoSize);
-                    ctx.restore();
-                }
-            }, 50);
-        }
-
-        function downloadQrCode(format) {
-            const canvas = document.getElementById('qr-canvas');
-            const link = document.createElement('a');
-            link.download = `celestial-qrcode.${format}`;
-            link.href = canvas.toDataURL(`image/${format}`);
-            link.click();
-        }
-
-        function formatBytes(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-
-        window.onload = () => {
-            renderQrCode();
-        };
     </script>
 </body>
 </html>
